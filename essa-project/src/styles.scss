@@ -1,0 +1,52 @@
+@use "primeicons/primeicons.css";
+
+@plugin 'tailwindcss-primeui';
+@layer tailwind, primeng;
+
+@layer tailwind {
+  @import "tailwindcss";
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@import "styles/dark-mode-overrides";
+
+.p-drawer-header {
+  padding: 0 !important;
+}
+
+.p-drawer-content {
+  padding: 0;
+}
+
+.p-panelmenu-panel {
+  border: none !important;
+  padding: 0;
+}
+
+.p-panelmenu-submenu {
+  margin-top: 0.5rem;
+}
+
+.p-menubar-item-content {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+p-tabs {
+  overflow: hidden !important;
+}
+
+.right-align-dropdown .p-tieredmenu {
+  left: auto !important;
+  right: 0 !important;
+}
+
+.right-align-dropdown {
+  left: auto !important;
+  right: 0 !important;
+}
+
+
+
+

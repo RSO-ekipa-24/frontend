@@ -1,0 +1,6 @@
+# These files are ignored from prettier formatting
+node_modules
+/dist
+/.nx/cache
+.angular
+package-lock.json

@@ -1,0 +1,25 @@
+<div class="flex flex-row items-center w-full relative">
+  <!-- Overlayed h1 centered vertically and horizontally -->
+  <h1
+    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-bold text-primary cursor-pointer z-10"
+    [routerLink]="''">MyProperty</h1>
+
+  <div class="flex-1">
+    <p-menubar [model]="menuItems()" [autoDisplay]="true" [autoHide]="true"
+               styleClass="rounded-none! border-x-0! border-t-0! shadow-lg/5!">
+      <ng-template #item let-item let-root="root">
+        <a class="flex items-center text-center p-2 rounded-lg w-auto p-menubar-item-link"
+           [routerLink]="item['routerLink']">
+          <span class="{{ item['icon'] }} text-sm"></span>
+          <span class="font-medium text-sm hover:text-primary ease-in-out duration-300">
+            {{ (item['label'] ?? '') | translate }}
+          </span>
+          <i *ngIf="item.items" [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"></i>
+        </a>
+      </ng-template>
+      <ng-template #end>
+        <app-navigation-avatar></app-navigation-avatar>
+      </ng-template>
+    </p-menubar>
+  </div>
+</div>

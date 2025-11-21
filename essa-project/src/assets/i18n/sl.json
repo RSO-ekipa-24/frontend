@@ -1,0 +1,81 @@
+{
+  "General": {
+    "Pages": {
+      "Home": "Domov",
+      "Browse": "Brskaj",
+      "Dashboard": "Nadzorna plošča",
+      "Properties": "Nepremičnine",
+      "Messaging": "Sporočila",
+      "Tenants": "Najemniki",
+      "Payments": "Plačila",
+      "Documents": "Dokumenti",
+      "Organization": "Organizacija",
+      "Settings": "Nastavitve",
+      "Tags": "Oznake"
+    },
+    "Buttons": {
+      "Login": "Prijava",
+      "Logout": "Odjava",
+      "Profile": "Profil",
+      "Actions": "Akcije",
+      "Add": "Dodaj",
+      "All": "Vse",
+      "Cancel": "Prekliči",
+      "Save": "Shrani",
+      "Edit": "Uredi",
+      "Delete": "Izbriši",
+      "Search": "Išči",
+      "ManageProperties": "Upravljaj",
+      "Inbox": "Prejeto"
+    },
+    "Fields": {
+      "Color": "Barva",
+      "Description": "Opis",
+      "Name": "Ime"
+    }
+  },
+  "Properties": {
+    "Property": "Nepremičnina",
+    "PropertyGroup": "Skupina nepremičnin",
+    "AddProperty": "Dodaj nepremičnino",
+    "AddPropertyGroup": "Dodaj skupino nepremičnin",
+    "EditProperty": "Uredi nepremičnino"
+  },
+  "Settings": {
+    "Tags": {
+      "Tag": "Oznaka",
+      "Tags": "Oznake",
+      "Description": "Opis",
+      "AssignedTo": "Dodeljeno",
+      "AddTag": "Dodaj oznako",
+      "EditTag": "Uredi oznako",
+      "DeleteTag": "Izbriši oznako",
+      "DeleteTagWarning": "Ali ste prepričani, da želite izbrisati oznako {{tagName}}?"
+    }
+  },
+  "Footer": {
+    "appName": "MyProperty",
+    "byEssa": "©2025 MyProperty by ESSA",
+    "termsOfService": "Pogoji uporabe",
+    "privacyPolicy": "Pravilnik o zasebnosti",
+    "products": {
+      "title": "Produkti",
+      "product": "Produkt",
+      "pricing": "Cenik",
+      "login": "Prijava"
+    },
+    "about": {
+      "title": "O nas",
+      "aboutApp": "O MyProperty",
+      "contactUs": "Kontaktirajte nas",
+      "features": "Funkcionalnosti"
+    },
+    "resources": {
+      "title": "Viri",
+      "helpCenter": "Pomoč uporabnikom",
+      "frequentQA": "Pogosta vprašanja",
+      "support": "Podpora"
+    },
+    "rightsReserved": "© ESSA. Vse pravice pridržane"
+  }
+}

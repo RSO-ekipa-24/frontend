@@ -1,0 +1,42 @@
+<div class="flex flex-1 items-center justify-end">
+  @if (authService.authenticated()) {
+    <div (click)="op.toggle($event)">
+      <div class="flex items-center p-2 cursor-pointer">
+        <p-avatar
+          image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg/2560px-Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg"
+          shape="circle"
+          size="normal"
+          class="mr-2"
+        ></p-avatar>
+        <div class="flex-1">
+          <div class="text-sm font-medium text-primary">{{ currentUsername() }}</div>
+        </div>
+      </div>
+      <p-popover #op styleClass="rounded-lg shadow-lg border-0">
+        <div class="flex flex-col gap-1">
+          <button pButton class="p-button-text p-button-plain w-full text-left text-sm"
+                  [routerLink]="'admin/dashboard'">
+            <div class="flex w-full items-center justify-start text-sm">
+              <span class="pi pi-user text-xs mr-2"></span>
+              <span
+                class="font-medium text-sm">{{ 'General.Buttons.Profile' | translate }}</span>
+            </div>
+          </button>
+          <p-divider styleClass="m-1!"></p-divider>
+          <button pButton class="p-button-text p-button-plain w-full text-left text-sm"
+                  (click)="authService.logout()">
+            <span class="pi pi-sign-out text-xs mr-2"></span>
+            <span class="font-medium text-sm text-primary">{{ 'General.Buttons.Logout' | translate }}</span>
+          </button>
+          <p-divider styleClass="m-1!"></p-divider>
+          <app-dark-mode-switch></app-dark-mode-switch>
+        </div>
+      </p-popover>
+    </div>
+  } @else {
+    <button pButton class="p-button-text p-button-plain" (click)="authService.login()">
+      <span class="pi pi-sign-in text-sm mr-2"></span>
+      <span class="text-sm font-medium text-primary">{{ 'General.Buttons.Login' | translate }}</span>
+    </button>
+  }
+</div>

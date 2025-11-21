@@ -1,0 +1,37 @@
+<p-tabs [value]="activeTab()" class="flex flex-col h-full rounded-t-2xl shadow-sm">
+  @if (tabs().length > 1) {
+    <p-tablist class="flex">
+      @for (tab of tabs(); track $index) {
+        <p-tab
+          [value]="$index"
+          class="p-0! cursor-pointer"
+          [class.bg-white]="activeTab() !== $index"
+          [class.bg-gray-50]="activeTab() === $index"
+        >
+          @if (tabTemplateRef) {
+            <ng-container *ngTemplateOutlet="tabTemplateRef; context: { $implicit: tab }"></ng-container>
+          } @else {
+            <span class="mx-2 px-6 py-3 text-sm">{{ tab[titleProperty()] }}</span>
+          }
+        </p-tab>
+      }
+    </p-tablist>
+  }
+
+  <p-tabpanels class="h-full p-0!">
+    @for (tab of tabs(); track $index) {
+      <p-tabpanel [value]="$index">
+        <div class="flex flex-col h-full p-6">
+          @if (toolbarTemplateRef) {
+            <div class="flex flex-row items-center mb-6 gap-4">
+              <ng-container *ngTemplateOutlet="toolbarTemplateRef"></ng-container>
+            </div>
+          }
+          @if (contentTemplateRef) {
+            <ng-container *ngTemplateOutlet="contentTemplateRef"></ng-container>
+          }
+        </div>
+      </p-tabpanel>
+    }
+  </p-tabpanels>
+</p-tabs>

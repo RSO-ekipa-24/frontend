@@ -1,0 +1,48 @@
+<div #parent class="flex flex-col h-full w-60 items-center relative">
+  <p-drawer
+    [visible]="true"
+    [showCloseIcon]="false"
+    [modal]="false"
+    [appendTo]="parent"
+    position="left"
+    styleClass="w-60! border-y-0! shadow-lg! p-4 h-full! top-auto!">
+
+    <ng-template #header>
+      <div class="text-center w-full mt-5 cursor-pointer" [routerLink]="''">
+        <h1 class="text-xl font-bold text-primary">MyProperty</h1>
+      </div>
+    </ng-template>
+
+    <div class="flex flex-col h-full w-full overflow-hidden">
+      <div class="flex-grow w-full overflow-y-auto">
+        <p-panelMenu [model]="menuItems()" styleClass="mt-4 w-full rounded-lg!">
+          <ng-template #item let-item>
+            @if (!item.isChild) {
+              <div class="flex items-center text-center p-2 rounded-lg! w-full sidebar-item"
+                   [routerLink]="item.route"
+                   routerLinkActive="active-sidebar-item"
+                   [routerLinkActiveOptions]="{exact: true}">
+                <span class="{{ item.icon }} ml-2 mr-4 text-sm!"></span>
+                <span class="font-medium text-sm">{{ item.label | translate }}</span>
+                @if (item.items?.length > 0) {
+                  <span class="ms-auto mr-2 text-xs! pi pi-chevron-down"
+                        [ngClass]="{'rotate-180': item.expanded}"></span>
+                }
+              </div>
+            } @else {
+              <div class="flex items-center text-center p-2 rounded-lg! text-sm sidebar-item"
+                   [routerLink]="item.route"
+                   routerLinkActive="active-sidebar-item"
+                   [routerLinkActiveOptions]="{exact: true}">
+                <span class="{{ item.icon }} ml-1 mr-2 text-xs!"></span>
+                <span class="font-medium text-sm">{{ item.label | translate }}</span>
+              </div>
+            }
+          </ng-template>
+        </p-panelMenu>
+      </div>
+      <app-navigation-avatar class="me-auto"></app-navigation-avatar>
+    </div>
+
+  </p-drawer>
+</div>

@@ -1,0 +1,24 @@
+.sidebar-item {
+  transition: background-color 0.2s ease-in-out;
+
+  &:not(.active-sidebar-item):hover {
+    background-color: var(--p-surface-100);
+  }
+
+  &.active-sidebar-item {
+    color: var(--p-primary-500);
+    background-color: var(--p-primary-100);
+
+    &:hover {
+      background-color: var(--p-primary-100);
+    }
+  }
+}
+
+.sidebar-item .pi-chevron-down {
+  transition: transform 0.2s ease; /* Smooth rotation transition */
+}
+
+.sidebar-item .rotate-180 {
+  transform: rotate(180deg); /* Rotate to mimic pi-chevron-up */
+}

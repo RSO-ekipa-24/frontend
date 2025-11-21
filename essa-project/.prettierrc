@@ -1,0 +1,20 @@
+{
+  "singleQuote": true,
+  "trailingComma": "none",
+  "bracketSameLine": true,
+  "bracketSpacing": false,
+  "arrowParens": "avoid",
+  "printWidth": 180,
+  "importOrder": [
+    "zone.js(.*)$",
+    "^@angular/(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^@core/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports"
+  ]
+}

@@ -1,0 +1,19 @@
+// This file contains specific overrides regarding dark mode
+
+html.dark .sidebar-item {
+  color: var(--p-surface-400);
+  transition: background-color 0.2s ease-in-out;
+
+  &:not(.active-sidebar-item):hover {
+    background-color: var(--p-surface-800) !important;
+  }
+
+  &.active-sidebar-item {
+    color: var(--p-primary-400);
+    background-color: rgba(#1e40af, 60%); // hex for primary-800
+
+    &:hover {
+      background-color: rgba(#1e40af, 60%); // hex for primary-800
+    }
+  }
+}

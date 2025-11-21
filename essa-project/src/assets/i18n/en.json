@@ -1,0 +1,82 @@
+{
+  "General": {
+    "Pages": {
+      "Home": "Home",
+      "Browse": "Browse",
+      "Dashboard": "Dashboard",
+      "Properties": "Properties",
+      "Messaging": "Messaging",
+      "Tenants": "Tenants",
+      "Payments": "Payments",
+      "Documents": "Documents",
+      "Organization": "Organization",
+      "Settings": "Settings",
+      "Tags": "Tags"
+    },
+    "Buttons": {
+      "Login": "Login",
+      "Logout": "Logout",
+      "Profile": "Profile",
+      "Actions": "Actions",
+      "Add": "Add",
+      "All": "All",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Edit": "Edit",
+      "Delete": "Delete",
+      "Search": "Search",
+      "ManageProperties": "Manage",
+      "Inbox": "Inbox"
+    },
+    "Fields": {
+      "Color": "Color",
+      "Description": "Description",
+      "Name": "Name"
+    }
+  },
+  "Properties": {
+    "Property": "Property",
+    "PropertyGroup": "Property group",
+    "AddProperty": "Add property",
+    "AddPropertyGroup": "Add Property Group",
+    "EditProperty": "Edit Property"
+  },
+  "Settings": {
+    "Tags": {
+      "Tag": "Tag",
+      "Tags": "Tags",
+      "Description": "Description",
+      "AssignedTo": "Assigned to",
+      "AddTag": "Add Tag",
+      "EditTag": "Edit Tag",
+      "DeleteTag": "Delete Tag",
+      "DeleteTagWarning": "Are you sure you want to delete tag {{tagName}}?"
+    }
+  },
+  "Footer": {
+    "appName": "MyProperty",
+    "byEssa": "©2025 MyProperty by ESSA",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "products": {
+      "title": "Products",
+      "product": "Product",
+      "pricing": "Pricing",
+      "login": "Log in"
+    },
+    "about": {
+      "title": "About us",
+      "aboutApp": "About MyProperty",
+      "contactUs": "Contact us",
+      "features": "Features"
+    },
+    "resources": {
+      "title": "Resources",
+      "helpCenter": "Help center",
+      "frequentQA": "Frequent Q&A",
+      "support": "Support"
+    },
+    "rightsReserved": "© ESSA. All rights reserved"
+
+  }
+}
