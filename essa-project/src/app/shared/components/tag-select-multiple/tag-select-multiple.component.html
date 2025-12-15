@@ -1,0 +1,36 @@
+<p-multiselect
+  [options]="tagStore.filteredTags()"
+  [(ngModel)]="selectedTags"
+  (onChange)="onTagsChange($event.value)"
+  [showToggleAll]="false"
+  [showHeader]="false"
+  [filter]="false"
+  [autoOptionFocus]="false"
+  [highlightOnSelect]="false"
+  appendTo="body"
+  placeholder="{{ 'Settings.Tags.Tags' | translate }}"
+  optionLabel="name"
+  dataKey="id"
+  class="tag-select border-surface! rounded-lg! text-sm! w-[15rem]!">
+  <ng-template let-tag pTemplate="item">
+    <app-tag [name]="tag.name" [color]="tag.color" size="sm" class="ml-1"></app-tag>
+  </ng-template>
+  <ng-template let-tags pTemplate="selectedItems">
+    @for (tag of tags; track $index) {
+      <app-tag [name]="tag.name" [color]="tag.color" size="xs"></app-tag>
+    }
+  </ng-template>
+  <ng-template #filtericon>
+    <i class="pi pi-map-marker"></i>
+  </ng-template>
+  <ng-template #footer>
+    <div class="p-1 flex justify-between">
+      <p-button label="{{ 'General.Buttons.Add' | translate }}" severity="secondary" text size="small"
+                icon="pi pi-plus" (onClick)="addTagDialogVisible = true"/>
+    </div>
+  </ng-template>
+</p-multiselect>
+
+<app-tag-dialog
+  [(visible)]="addTagDialogVisible">
+</app-tag-dialog>

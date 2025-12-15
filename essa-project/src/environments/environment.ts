@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
-  keyCloakUrl: 'https://10.1.1.20/keycloak',
-  apiUrl: 'https://10.1.1.20/core',
+  keyCloakUrl: 'http://localhost:8081',
+  apiUrl: 'http://localhost:6969',
   documentsUrl: 'https://localhost:6868',
   appBasePath: '',
 };

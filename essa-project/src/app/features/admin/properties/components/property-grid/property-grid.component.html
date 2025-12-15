@@ -1,0 +1,21 @@
+<app-tab-view [tabs]="tabs" titleProperty="title">
+  <ng-template #toolbar>
+    <app-search-box></app-search-box>
+    <app-tag-select-multiple></app-tag-select-multiple>
+  </ng-template>
+
+  <ng-template #content>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      @for (property of propertyStore.filteredProperties(); track $index) {
+        <app-property-grid-card
+          imageUrl="../../../../assets/mock/house.jpg"
+          [cardTitle]="property.name"
+          gradientStartPosition="50%"
+          gradientEndPosition="80%"
+          darkenPercentage="60%"
+        >
+        </app-property-grid-card>
+      }
+    </div>
+  </ng-template>
+</app-tab-view>

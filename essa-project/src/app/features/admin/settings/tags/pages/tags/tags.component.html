@@ -1,3 +1,19 @@
 <app-fluid-layout>
-  <app-page-header [title]="'General.Pages.Tags' | translate"></app-page-header>
+  <app-page-header [title]="'General.Pages.Tags' | translate">
+    <ng-template #toolbar>
+      <p-button
+        [label]="'General.Buttons.Add' | translate"
+        icon="pi pi-plus"
+        size="small"
+        (onClick)="openAddTagDialog()"
+      >
+
+      </p-button>
+
+    </ng-template>
+  </app-page-header>
+
+  <app-tag-grid class="flex-grow"></app-tag-grid>
 </app-fluid-layout>
+
+<app-tag-dialog [(visible)]="addTagDialogVisible" [header]="'Settings.Tags.AddTag' | translate"></app-tag-dialog>

@@ -1,0 +1,17 @@
+<p-card
+  [style]="cardStyles()"
+  class="w-full flex flex-col"
+  styleClass="rounded-2xl! border-surface! border-1!">
+
+  <ng-template #header>
+    <div class="h-[6rem] md:h-[8rem] lg:h-[10rem]"></div>
+  </ng-template>
+
+  <ng-template #title>
+    <span class="text-md text-left font-semibold text-white">{{ cardTitle() }}</span>
+  </ng-template>
+
+  <ng-template #footer>
+    <div class="flex gap-4 mt-1"></div>
+  </ng-template>
+</p-card>

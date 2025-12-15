@@ -1,0 +1,39 @@
+<p-dialog
+  [header]="(isEditMode ? 'Settings.Tags.EditTag' : 'Settings.Tags.AddTag') | translate"
+  [(visible)]="isVisible"
+  [draggable]="false"
+  [resizable]="false"
+  [modal]="true"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '50vw' }"
+  (onHide)="onHide()"
+>
+  <form [formGroup]="tagForm">
+    <div class="form-container">
+      <div class="flex flex-col gap-2 mb-4">
+        <label for="name" class="font-semibold text-sm">{{ 'General.Fields.Name' | translate }}</label>
+        <input pInputText id="name" formControlName="name" pSize="small"/>
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="name" class="font-semibold text-sm">{{ 'General.Fields.Color' | translate }}</label>
+        <p-colorPicker id="color" formControlName="color" appendTo="body"></p-colorPicker>
+      </div>
+    </div>
+  </form>
+
+  <ng-template #footer>
+    <p-button
+      [label]="'General.Buttons.Cancel' | translate"
+      severity="secondary"
+      size="small"
+      (onClick)="onHide()"
+    ></p-button>
+    <p-button
+      [label]="(isEditMode ? 'General.Buttons.Save' : 'General.Buttons.Add') | translate"
+      size="small"
+      type="submit"
+      [disabled]="tagForm.invalid"
+      (onClick)="saveTag()"
+    ></p-button>
+  </ng-template>
+</p-dialog>

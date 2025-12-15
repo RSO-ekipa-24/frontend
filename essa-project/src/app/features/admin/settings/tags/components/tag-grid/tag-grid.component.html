@@ -1,0 +1,70 @@
+<app-tab-view>
+    <ng-template #toolbar>
+        <app-search-box></app-search-box>
+    </ng-template>
+
+    <ng-template #content>
+        <p-table
+                [value]="tagStore.filteredTags()"
+                [paginator]="true"
+                [rows]="10"
+                [showCurrentPageReport]="true"
+                [loading]="tagStore.isLoading()"
+                styleClass="h-full flex flex-col"
+                paginatorStyleClass="text-xs!"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="font-bold text-sm">{{ "Settings.Tags.Tag" | translate }}</th>
+                    <th class="font-bold text-sm">{{ "Settings.Tags.Description" | translate }}</th>
+                    <th></th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-item>
+                <tr>
+                    <td>
+                        <app-tag [name]="item.name" [color]="item.color"></app-tag>
+                    </td>
+                    <td>{{ item.description }}</td>
+                    <td class="flex flex-row justify-end">
+                        <p-menu #menu [model]="gridActions()" [popup]="true" appendTo="body"
+                                styleClass="text-sm mt-2 w-fit! min-w-fit!"
+                        >
+                            <ng-template #item let-item>
+                                <a class="flex items-center p-menu-item-link">
+                                    <span class="{{ item.icon }} text-xs!"></span>
+                                    <span class="mx-2 text-sm">{{ item.label }}</span>
+                                </a>
+                            </ng-template>
+                        </p-menu>
+                        <p-button (click)="menu.toggle($event); selectedTag = item" icon="pi pi-ellipsis-h"
+                                  severity="secondary"
+                                  size="small"/>
+                    </td>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="emptymessage">
+                @if (tagStore.isLoaded()) {
+                    No data available
+                }
+            </ng-template>
+        </p-table>
+
+    </ng-template>
+</app-tab-view>
+
+<app-tag-dialog
+        [(visible)]="editTagDialogVisible"
+        [header]="'Settings.Tags.AddTag' | translate"
+        [tag]="selectedTag">
+</app-tag-dialog>
+
+<app-delete-dialog
+        [(visible)]="deleteTagDialogVisible"
+        [header]="'Settings.Tags.DeleteTag' | translate"
+        [body]="'Settings.Tags.DeleteTagWarning' | translate: {tagName: selectedTag.name}"
+        (onDelete)="deleteSelectedTag()"
+></app-delete-dialog>
+

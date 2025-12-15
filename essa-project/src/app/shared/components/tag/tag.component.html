@@ -1,0 +1,10 @@
+<div
+  class="d-flex flex-row rounded-xl text-center inline-flex items-center justify-center h-full"
+  [style.background-color]="backgroundColor()">
+  <span
+    [ngClass]="size() == 'sm' ? 'px-2 py-1 text-xs': 'px-[0.4rem] py-[0.1rem] text-[0.65rem]'"
+    class="font-bold h-full flex items-center"
+    [style.color]="color()">
+    {{ name() }}
+  </span>
+</div>

@@ -1,0 +1,48 @@
+<p-dialog
+  [header]="(isEditMode ? 'Properties.EditProperty' : 'Properties.AddProperty') | translate"
+  [(visible)]="isVisible"
+  [draggable]="false"
+  [resizable]="false"
+  [modal]="true"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '50vw' }"
+  (onHide)="onHide()"
+>
+  <form [formGroup]="propertyForm">
+    <div class="form-container">
+      <div class="flex flex-col gap-2 mb-4">
+        <label for="name" class="font-semibold text-sm">{{ 'General.Fields.Name' | translate }}</label>
+        <input pInputText id="name" formControlName="name" pSize="small"/>
+      </div>
+      <div class="flex flex-col gap-2 mb-4">
+        <label for="description" class="font-semibold text-sm">{{ 'General.Fields.Description' | translate }}</label>
+        <input pInputText id="description" formControlName="description" pSize="small"/>
+      </div>
+      <div class="flex flex-col gap-2 mb-4">
+        <label for="tags" class="font-semibold text-sm">{{ 'Settings.Tags.Tags' | translate }}</label>
+        <app-tag-select-multiple
+          id="tags"
+          formControlName="tags"
+          [selectedTagIds]="propertyForm.get('tags')?.value"
+          (selectedTagIdsChange)="propertyForm.get('tags')?.setValue($event)"
+        ></app-tag-select-multiple>
+      </div>
+    </div>
+  </form>
+
+  <ng-template #footer>
+    <p-button
+      [label]="'General.Buttons.Cancel' | translate"
+      severity="secondary"
+      size="small"
+      (onClick)="onHide()"
+    ></p-button>
+    <p-button
+      [label]="(isEditMode ? 'General.Buttons.Save' : 'General.Buttons.Add') | translate"
+      size="small"
+      type="submit"
+      [disabled]="propertyForm.invalid"
+      (onClick)="saveProperty()"
+    ></p-button>
+  </ng-template>
+</p-dialog>
