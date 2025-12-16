@@ -32,7 +32,7 @@ export class PropertyDialogComponent {
 
   header = input<string>('Settings.Properties.AddProperty');
 
-  property = input<Property>({id: '', name: '', description: '', tags: [], propertyGroupId: ''});
+  property = input<Property>({id: '', name: '', description: '', tags: []});
 
   protected isVisible = false;
   protected propertyForm: FormGroup;
@@ -47,7 +47,6 @@ export class PropertyDialogComponent {
       name: ['', Validators.required],
       description: [''],
       tags: [[]],
-      propertyGroupId: ['']
     });
 
     effect(() => {
@@ -60,7 +59,6 @@ export class PropertyDialogComponent {
         name: property.name,
         description: property.description ?? '',
         tags: property.tags ?? [],
-        propertyGroupId: property.propertyGroupId ?? ''
       });
     });
   }
@@ -94,6 +92,6 @@ export class PropertyDialogComponent {
   }
 
   private resetForm() {
-    this.propertyForm.reset({id: '', name: '', description: '', tagIds: [], propertyGroupId: ''});
+    this.propertyForm.reset({id: '', name: '', description: '', tagIds: []});
   }
 }

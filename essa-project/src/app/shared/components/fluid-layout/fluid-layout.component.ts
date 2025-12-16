@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, input} from '@angular/core';
 
 @Component({
   selector: 'app-fluid-layout',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './fluid-layout.component.scss'
 })
 export class FluidLayoutComponent {
-
+  fullHeight = input<boolean>(false);
 }

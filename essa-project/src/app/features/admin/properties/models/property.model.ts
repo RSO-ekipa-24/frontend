@@ -3,5 +3,4 @@ export interface Property {
   name: string;
   description?: string;
   tags: string[];
-  propertyGroupId: string;
 }
