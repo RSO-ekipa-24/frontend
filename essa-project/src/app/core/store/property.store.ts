@@ -85,7 +85,7 @@ export const PropertyStore = signalStore(
               }
               return of(cachedProperties);
             }
-            return propertyService.getAll().pipe(
+            return propertyService.getPersonal().pipe(
               tapResponse({
                 next: (properties) => {
                   patchState(store, {

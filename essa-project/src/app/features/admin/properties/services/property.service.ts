@@ -18,6 +18,10 @@ export class PropertyService {
     return this.http.get<Property[]>(this.baseUrl);
   }
 
+  getPersonal(): Observable<Property[]> {
+    return this.http.get<Property[]>(`${environment.apiUrl}/users/properties`);
+  }
+
   create(property: Property): Observable<Property> {
     return this.http.post<Property>(this.baseUrl, property);
   }

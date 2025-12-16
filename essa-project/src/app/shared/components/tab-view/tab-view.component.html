@@ -1,4 +1,7 @@
-<p-tabs [value]="activeTab()" class="flex flex-col h-full rounded-t-2xl shadow-sm">
+<p-tabs
+  [value]="activeTab()"
+  class="flex flex-col h-full rounded-t-3xl shadow-sm"
+  [class.rounded-3xl]="rounded()">
   @if (tabs().length > 1) {
     <p-tablist class="flex">
       @for (tab of tabs(); track $index) {

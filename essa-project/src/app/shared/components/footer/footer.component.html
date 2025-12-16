@@ -1,10 +1,10 @@
-<footer class="bg-gray-900 text-gray-300">
+<footer class="bg-surface-0 dark:bg-surface-900 dark:text-gray-300 shadow-sm">
   <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
 
     <!-- Brand / Logo -->
     <div class="col-span-1 lg:col-span-2 flex flex-col gap-6">
       <!-- Brand -->
-      <h2 class="text-xl font-bold text-white">{{ 'Footer.appName' | translate }}</h2>
+      <h2 class="text-xl font-bold text-secondary">{{ 'Footer.appName' | translate }}</h2>
 
       <!-- Copyright -->
       <p class="text-sm text-gray-400">
@@ -13,13 +13,13 @@
 
       <!-- Terms / Privacy -->
       <div class="text-xs flex gap-3 text-gray-400">
-        <a href="#" class="underline hover:text-white">{{ 'Footer.termsOfService' | translate }}</a>
+        <a href="#">{{ 'Footer.termsOfService' | translate }}</a>
         <span>|</span>
-        <a href="#" class="underline hover:text-white"> {{ 'Footer.privacyPolicy' | translate }}y</a>
+        <a href="#"> {{ 'Footer.privacyPolicy' | translate }}y</a>
       </div>
 
       <!-- Social icons -->
-      <div class="flex space-x-4 mt-2 text-white">
+      <div class="flex space-x-4 mt-2 text-gray-700 dark:text-white">
         <a href="#" aria-label="Twitter"><i class="pi pi-twitter"></i></a>
         <a href="#" aria-label="Facebook"><i class="pi pi-linkedin"></i></a>
         <a href="#" aria-label="Instagram"><i class="pi pi-github"></i></a>
@@ -28,36 +28,36 @@
 
     <!-- Products -->
     <div>
-      <h3 class="text-lg font-semibold text-white mb-3">{{ 'Footer.products.title' | translate }}</h3>
-      <ul class="space-y-2 text-sm">
-        <li><a routerLink="/" class="hover:text-white">{{ 'Footer.products.product' | translate }}</a></li>
-        <li><a routerLink="/about" class="hover:text-white">{{ 'Footer.products.pricing' | translate }}</a></li>
-        <li><a routerLink="/contact" class="hover:text-white">{{ 'Footer.products.login' | translate }}</a></li>
+      <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-3">{{ 'Footer.products.title' | translate }}</h3>
+      <ul class="space-y-2 text-sm text-gray-400">
+        <li><a routerLink="/">{{ 'Footer.products.product' | translate }}</a></li>
+        <li><a routerLink="/about">{{ 'Footer.products.pricing' | translate }}</a></li>
+        <li><a routerLink="/contact">{{ 'Footer.products.login' | translate }}</a></li>
       </ul>
     </div>
 
     <!-- Resources -->
     <div>
-      <h3 class="text-lg font-semibold text-white mb-3">{{ 'Footer.about.title' | translate }}</h3>
-      <ul class="space-y-2 text-sm">
-        <li><a href="#" class="hover:text-white">{{ 'Footer.about.aboutApp' | translate }}</a></li>
-        <li><a href="#" class="hover:text-white">{{ 'Footer.about.contactUs' | translate }}</a></li>
-        <li><a href="#" class="hover:text-white">{{ 'Footer.about.features' | translate }}</a></li>
+      <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-3">{{ 'Footer.about.title' | translate }}</h3>
+      <ul class="space-y-2 text-sm text-gray-400">
+        <li><a href="#">{{ 'Footer.about.aboutApp' | translate }}</a></li>
+        <li><a href="#">{{ 'Footer.about.contactUs' | translate }}</a></li>
+        <li><a href="#">{{ 'Footer.about.features' | translate }}</a></li>
       </ul>
     </div>
 
     <!-- Resources -->
     <div>
-      <h3 class="text-lg font-semibold text-white mb-3">{{ 'Footer.resources.title' | translate }}</h3>
-      <ul class="space-y-2 text-sm">
-        <li><a href="#" class="hover:text-white">{{ 'Footer.resources.helpCenter' | translate }}</a></li>
-        <li><a href="#" class="hover:text-white">{{ 'Footer.resources.frequentQA' | translate }}</a></li>
-        <li><a href="#" class="hover:text-white">{{ 'Footer.resources.support' | translate }}</a></li>
+      <h3 class="text-lg font-semibold text-gray-700 dark:text-white mb-3">{{ 'Footer.resources.title' | translate }}</h3>
+      <ul class="space-y-2 text-sm text-gray-400">
+        <li><a href="#">{{ 'Footer.resources.helpCenter' | translate }}</a></li>
+        <li><a href="#">{{ 'Footer.resources.frequentQA' | translate }}</a></li>
+        <li><a href="#">{{ 'Footer.resources.support' | translate }}</a></li>
       </ul>
     </div>
   </div>
 
-  <div class="border-t border-gray-700 mt-8 pt-6 pb-6 text-center text-sm text-gray-500">
+  <div class="border-t border-surface mt-8 pt-6 pb-6 text-center text-sm text-gray-500">
     {{ 'Footer.rightsReserved' | translate }}
   </div>
 </footer>
