@@ -33,8 +33,8 @@ export const routes: Routes = [
         data: {
           label: 'General.Pages.Messaging',
           icon: 'pi pi-inbox',
-          navbar: true,
-          sidebar: true,
+          navbar: false,
+          sidebar: false,
         }
       },
     ]
@@ -42,6 +42,17 @@ export const routes: Routes = [
   {
     path: 'admin',
     children: [
+      {
+        path: 'profile',
+        loadComponent: () => import('./features/admin/profile/pages/profile.component').then(c => c.ProfileComponent),
+        canActivate: [canActivateAuth],
+        data: {
+          label: 'General.Pages.Profile',
+          icon: '',
+          navbar: false,
+          sidebar: false,
+        }
+      },
       {
         path: 'dashboard',
         loadComponent: () => import('./features/admin/dashboard/pages/dashboard/dashboard.component').then(c => c.DashboardComponent),
@@ -105,7 +116,7 @@ export const routes: Routes = [
           label: 'General.Pages.Organization',
           icon: 'pi pi-sitemap',
           navbar: false,
-          sidebar: true,
+          sidebar: false,
         }
       },
       {

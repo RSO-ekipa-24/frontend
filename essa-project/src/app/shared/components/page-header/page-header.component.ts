@@ -12,5 +12,6 @@ import {NgTemplateOutlet} from '@angular/common';
 export class PageHeaderComponent {
   title = input<string>('');
 
+  @ContentChild('title') titleTemplateRef?: TemplateRef<any>;
   @ContentChild('toolbar') toolbarTemplateRef?: TemplateRef<any>;
 }

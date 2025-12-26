@@ -11,7 +11,8 @@
       "Documents": "Documents",
       "Organization": "Organization",
       "Settings": "Settings",
-      "Tags": "Tags"
+      "Tags": "Tags",
+      "Profile": "Profile"
     },
     "Buttons": {
       "Login": "Login",
@@ -26,7 +27,10 @@
       "Delete": "Delete",
       "Search": "Search",
       "ManageProperties": "Manage",
-      "Inbox": "Inbox"
+      "Inbox": "Inbox",
+      "Choose": "Choose",
+      "DragAndDrop": "Drag and drop or",
+      "ClickHere": "Click here"
     },
     "Fields": {
       "Color": "Color",
@@ -39,7 +43,8 @@
     "PropertyGroup": "Property group",
     "AddProperty": "Add property",
     "AddPropertyGroup": "Add Property Group",
-    "EditProperty": "Edit Property"
+    "EditProperty": "Edit Property",
+    "Images": "Images"
   },
   "Settings": {
     "Tags": {

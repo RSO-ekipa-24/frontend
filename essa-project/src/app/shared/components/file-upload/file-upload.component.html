@@ -1,0 +1,66 @@
+  <p-fileUpload
+    #fileUpload
+    styleClass="border-surface! rounded-lg!"
+    name="files[]"
+    [multiple]="multiple()"
+    [accept]="allowedFileTypes().join(',')"
+    [customUpload]="true"
+    [showUploadButton]="false"
+    [showCancelButton]="false"
+    chooseLabel="{{ 'General.Buttons.Choose' | translate }}"
+    (onSelect)="onSelectedFiles($event)"
+  >
+    <ng-template #content let-files let-chooseCallback="chooseCallback" let-removeFileCallback="removeFileCallback">
+      <div class="flex flex-col w-full p-2 gap-2 items-center justify-center">
+        @if (files?.length > 0) {
+              @for (file of files; track $index; let i = $index) {
+                <div class="flex flex-row items-center w-full gap-4 border-surface! rounded-md! border-1! overflow-hidden!">
+                  @if (file.type.startsWith('image/')) {
+                    <div class="image-container">
+                      <img
+                        role="presentation"
+                        [alt]="file.name"
+                        [src]="file.objectURL"
+                        class="image"
+                      />
+                    </div>
+                  } @else {
+                    <i class="pi pi-file text-5xl text-primary"></i>
+                  }
+
+                  <span class="font-medium text-center max-w-60 text-ellipsis overflow-hidden whitespace-nowrap">
+                    {{ file.name }}
+                  </span>
+                  <span class="text-sm text-500">{{ formatSize(file.size) }}</span>
+                  <p-button
+                    icon="pi pi-times"
+                    class="ml-auto mr-2"
+                    (onClick)="onRemoveFile($event, file, removeFileCallback, i)"
+                    [outlined]="true"
+                    [rounded]="true"
+                    [size]="'small'"
+                    severity="danger"
+                  />
+                </div>
+              }
+        } @else {
+            <i class="pi pi pi-images pt-8 !text-6xl text-gray-400 dark:text-white"></i>
+            <div class="flex flex-row items-center justify-center !text-secondary mt-2 mb-4">
+              <p class="mr-1">{{ 'General.Buttons.DragAndDrop' | translate }}</p>
+              <p-button
+                styleClass="p-1!"
+                (onClick)="choose($event, chooseCallback)"
+                [text]="true"
+                [label]="'General.Buttons.ClickHere' | translate"
+              />
+            </div>
+        }
+
+      </div>
+    </ng-template>
+
+    <ng-template #header></ng-template>
+    <ng-template #file></ng-template>
+    <ng-template #empty></ng-template>
+
+  </p-fileUpload>
