@@ -1,0 +1,30 @@
+<app-compact-layout>
+  <app-page-header>
+    <ng-template #title>
+      <div class="flex items-center cursor-pointer">
+        <p-avatar
+          image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg/2560px-Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg"
+          shape="circle"
+          size="xlarge"
+          class="mr-4"
+        ></p-avatar>
+        <div class="flex-1">
+          <h1 class="text-3xl font-semibold animate-fade-in">{{ currentUsername() }}</h1>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #toolbar>
+      <p-button
+        [label]="'General.Buttons.Logout' | translate"
+        icon="pi pi-sign-out"
+        severity="primary"
+        variant="outlined"
+        size="small"
+        (click)="authService.logout()"
+      >
+      </p-button>
+    </ng-template>
+  </app-page-header>
+
+  <app-profile-settings></app-profile-settings>
+</app-compact-layout>

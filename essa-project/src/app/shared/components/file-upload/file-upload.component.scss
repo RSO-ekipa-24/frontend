@@ -1,0 +1,10 @@
+.image-container {
+  width: 7.5rem;
+  height: 5rem;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}

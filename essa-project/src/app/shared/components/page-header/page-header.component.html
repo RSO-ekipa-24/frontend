@@ -1,5 +1,11 @@
 <div class="flex flex-row items-center mb-6">
-  <h1 class="text-3xl font-semibold animate-fade-in">{{ title() }}</h1>
+  @if (titleTemplateRef) {
+    <div>
+      <ng-container *ngTemplateOutlet="titleTemplateRef"></ng-container>
+    </div>
+  } @else {
+    <h1 class="text-3xl font-semibold animate-fade-in">{{ title() }}</h1>
+  }
   @if (toolbarTemplateRef) {
     <div class="ml-auto">
       <ng-container *ngTemplateOutlet="toolbarTemplateRef"></ng-container>

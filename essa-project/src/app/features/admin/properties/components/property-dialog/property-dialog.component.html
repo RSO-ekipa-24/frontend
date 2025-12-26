@@ -12,12 +12,14 @@
     <div class="form-container">
       <div class="flex flex-col gap-2 mb-4">
         <label for="name" class="font-semibold text-sm">{{ 'General.Fields.Name' | translate }}</label>
-        <input pInputText id="name" formControlName="name" pSize="small"/>
+        <input pInputText id="name" class="border-surface!" formControlName="name" pSize="small"/>
       </div>
+
       <div class="flex flex-col gap-2 mb-4">
         <label for="description" class="font-semibold text-sm">{{ 'General.Fields.Description' | translate }}</label>
-        <input pInputText id="description" formControlName="description" pSize="small"/>
+        <input pInputText id="description" class="border-surface!" formControlName="description" pSize="small"/>
       </div>
+
       <div class="flex flex-col gap-2 mb-4">
         <label for="tags" class="font-semibold text-sm">{{ 'Settings.Tags.Tags' | translate }}</label>
         <app-tag-select-multiple
@@ -26,6 +28,16 @@
           [selectedTagIds]="propertyForm.get('tags')?.value"
           (selectedTagIdsChange)="propertyForm.get('tags')?.setValue($event)"
         ></app-tag-select-multiple>
+      </div>
+
+      <div class="flex flex-col gap-2 mb-4">
+        <label for="images" class="font-semibold text-sm">{{ 'Properties.Images' | translate }}</label>
+        <app-file-upload
+          id="images"
+          [multiple]="true"
+          [allowedFileTypes]="['image/*']"
+          (onFilesSelected)="onImagesSelected($event)"
+        ></app-file-upload>
       </div>
     </div>
   </form>
@@ -40,7 +52,6 @@
     <p-button
       [label]="(isEditMode ? 'General.Buttons.Save' : 'General.Buttons.Add') | translate"
       size="small"
-      type="submit"
       [disabled]="propertyForm.invalid"
       (onClick)="saveProperty()"
     ></p-button>

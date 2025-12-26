@@ -10,6 +10,7 @@ import {Property} from '../../models/property.model';
 import {
   TagSelectMultipleComponent
 } from '../../../../../shared/components/tag-select-multiple/tag-select-multiple.component';
+import {FileUploadComponent} from '../../../../../shared/components/file-upload/file-upload.component';
 
 @Component({
   selector: 'app-property-dialog',
@@ -22,6 +23,7 @@ import {
     InputNumberModule,
     ReactiveFormsModule,
     TagSelectMultipleComponent,
+    FileUploadComponent,
   ],
   templateUrl: './property-dialog.component.html',
   styleUrls: ['./property-dialog.component.scss'],
@@ -47,6 +49,7 @@ export class PropertyDialogComponent {
       name: ['', Validators.required],
       description: [''],
       tags: [[]],
+      images: [[]], // <-- new form control to hold File[]
     });
 
     effect(() => {
@@ -54,13 +57,20 @@ export class PropertyDialogComponent {
 
       const property = this.property();
       this.isEditMode = property.id !== '';
-      this.propertyForm.setValue({
+
+      this.propertyForm.patchValue({
         id: property.id,
         name: property.name,
         description: property.description ?? '',
         tags: property.tags ?? [],
+        images: [],
       });
     });
+  }
+
+  // Called by app-file-upload when files change
+  onImagesSelected(files: File[]) {
+    this.propertyForm.get('images')?.setValue(files);
   }
 
   onHide() {
@@ -72,26 +82,29 @@ export class PropertyDialogComponent {
   saveProperty() {
     if (this.propertyForm.valid) {
       const propertyData = this.propertyForm.value;
-      console.log(propertyData)
+      console.log('Saving property with images:', propertyData);
+
       if (propertyData.id === '') {
         this.propertyStore.createProperty({
           property: propertyData,
-          callback: () => {
-            this.onHide();
-          },
+          callback: () => this.onHide(),
         });
       } else {
         this.propertyStore.updateProperty({
           property: propertyData,
-          callback: () => {
-            this.onHide();
-          },
+          callback: () => this.onHide(),
         });
       }
     }
   }
 
   private resetForm() {
-    this.propertyForm.reset({id: '', name: '', description: '', tagIds: []});
+    this.propertyForm.reset({
+      id: '',
+      name: '',
+      description: '',
+      tags: [],
+      images: [],
+    });
   }
 }
