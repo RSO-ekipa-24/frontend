@@ -23,11 +23,19 @@ export class PropertyService {
   }
 
   create(property: Property): Observable<Property> {
-    return this.http.post<Property>(this.baseUrl, property);
+    const payload = {
+      ...property,
+      tags: property.tags?.map(tag => tag.id) ?? []
+    };
+    return this.http.post<Property>(this.baseUrl, payload);
   }
 
   update(property: Property): Observable<Property> {
-    return this.http.put<Property>(this.baseUrl, property);
+    const payload = {
+      ...property,
+      tags: property.tags?.map(tag => tag.id) ?? []
+    };
+    return this.http.put<Property>(this.baseUrl, payload);
   }
 
   delete(id: string): Observable<void> {

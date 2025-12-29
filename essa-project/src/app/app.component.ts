@@ -6,13 +6,15 @@ import {AuthService} from '@core/auth/services/auth.service';
 import {NavbarComponent} from './shared/components/navbar/navbar.component';
 import {filter} from 'rxjs/operators';
 import {FooterComponent} from './shared/components/footer/footer.component';
+import {Toast, ToastModule} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
 
 @Component({
   standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [RouterOutlet, TranslateModule, SidebarComponent, NavbarComponent, FooterComponent]
+  imports: [RouterOutlet, TranslateModule, SidebarComponent, NavbarComponent, FooterComponent, ToastModule],
 })
 export class AppComponent implements OnInit {
   private translate: TranslateService = inject(TranslateService);

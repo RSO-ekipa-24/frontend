@@ -1,0 +1,29 @@
+<app-fluid-layout>
+  <app-page-header [title]="property()?.name ?? ''">
+    <ng-template #toolbar>
+      <p-splitbutton
+        styleClass="right-align-dropdown"
+        menuStyleClass="text-sm p-1 mt-2"
+        label="{{ 'General.Buttons.Actions' | translate }}"
+        appendTo="body"
+        [model]="gridActions()"
+        size="small"/>
+    </ng-template>
+  </app-page-header>
+  <app-property-details-data [property]="property()" ></app-property-details-data>
+</app-fluid-layout>
+
+<app-property-dialog
+  [(visible)]="editPropertyDialogVisible"
+  [header]="'Properties.EditProperty' | translate"
+  [property]="property()"
+></app-property-dialog>
+
+<app-delete-dialog
+  [(visible)]="deletePropertyDialogVisible"
+  [header]="'Properties.DeleteProperty' | translate"
+  [body]="'Properties.DeletePropertyWarning' | translate: {propertyName: property()?.name}"
+  (onDelete)="deleteProperty()"
+></app-delete-dialog>
+
+

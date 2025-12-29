@@ -75,7 +75,6 @@ export const TagStore = signalStore(
           tap(() => patchState(store, {isLoading: true, isLoaded: false, error: null})),
           switchMap(() => {
             const cachedTags = store.getCache();
-            console.log(cachedTags)
             if (cachedTags) {
               if (cachedTags !== store._tagEntities()) {
                 patchState(store, {
