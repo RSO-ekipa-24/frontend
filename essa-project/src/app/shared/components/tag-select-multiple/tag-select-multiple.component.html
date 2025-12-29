@@ -1,6 +1,6 @@
 <p-multiselect
   [options]="tagStore.filteredTags()"
-  [(ngModel)]="selectedTags"
+  [(ngModel)]="currentTags"
   (onChange)="onTagsChange($event.value)"
   [showToggleAll]="false"
   [showHeader]="false"

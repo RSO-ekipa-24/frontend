@@ -1,0 +1,38 @@
+<div class="flex flex-row w-full gap-8">
+  <div class="w-full">
+    <p-galleria
+      containerClass="rounded-lg! border-surface! border-1!"
+      [value]="images"
+      [numVisible]="7"
+      [circular]="true"
+    >
+      <ng-template #item let-item>
+        <img [src]="item.itemImageSrc" style="width: 100%; display: block; max-height: 30rem; object-fit: cover" />
+      </ng-template>
+      <ng-template #thumbnail let-item>
+        <img [src]="item.thumbnailImageSrc" style="width: 100%; display: block; max-height: 5rem; object-fit: cover" />
+      </ng-template>
+    </p-galleria>
+  </div>
+
+
+  <div class="w-100 h-full">
+    <p-card
+      class="h-full"
+      styleClass="rounded-lg! border-surface!!">
+      <div class="flex flex-col gap-2 mb-4">
+        <label for="description" class="font-semibold text-sm">{{ 'General.Fields.Description' | translate }}</label>
+        <p id="description" class="border-surface!" pSize="small">{{ property()?.description }} </p>
+      </div>
+
+      <div class="flex flex-col gap-2 mb-4">
+        <label for="tags" class="font-semibold text-sm">{{ 'Settings.Tags.Tags' | translate }}</label>
+        <div id="tags">
+          @for (tag of property()?.tags ?? []; track $index) {
+            <app-tag class="mr-2" [name]="tag.name" [color]="tag.color"></app-tag>
+          }
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>

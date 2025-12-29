@@ -34,7 +34,7 @@ export class PropertyDialogComponent {
 
   header = input<string>('Settings.Properties.AddProperty');
 
-  property = input<Property>({id: '', name: '', description: '', tags: []});
+  property = input<Property | null>({id: '', name: '', description: '', tags: []});
 
   protected isVisible = false;
   protected propertyForm: FormGroup;
@@ -55,8 +55,10 @@ export class PropertyDialogComponent {
     effect(() => {
       this.isVisible = this.visible();
 
-      const property = this.property();
+      const property = this.property() ?? {id: '', name: '', description: '', tags: []};
       this.isEditMode = property.id !== '';
+
+      console.log(property)
 
       this.propertyForm.patchValue({
         id: property.id,

@@ -16,6 +16,7 @@ import {
   provideKeycloak
 } from 'keycloak-angular';
 import {environment} from '../environments/environment';
+import {MessageService} from 'primeng/api';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, environment.appBasePath + '/assets/i18n/', '.json');
@@ -69,6 +70,7 @@ export const appConfig: ApplicationConfig = {
           darkModeSelector: '.dark'
         }
       }
-    })
+    }),
+    MessageService
   ]
 };

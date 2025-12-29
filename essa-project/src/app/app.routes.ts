@@ -27,6 +27,16 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'browsing/:propertyId',
+        loadComponent: () => import('./features/browsing/pages/property-details-public/property-details-public.component').then(c => c.PropertyDetailsPublicComponent),
+        data: {
+          label: '',
+          icon: '',
+          navbar: false,
+          sidebar: false,
+        }
+      },
+      {
         path: 'messaging',
         loadComponent: () => import('./features/messaging/pages/messaging.component').then(c => c.MessagingComponent),
         canActivate: [canActivateAuth],
@@ -73,6 +83,17 @@ export const routes: Routes = [
           icon: 'pi pi-building',
           navbar: false,
           sidebar: true,
+        }
+      },
+      {
+        path: 'properties/:propertyId',
+        loadComponent: () => import('./features/admin/properties/pages/property-details/property-details.component').then(c => c.PropertyDetailsComponent),
+        canActivate: [canActivateAuth],
+        data: {
+          label: '',
+          icon: '',
+          navbar: false,
+          sidebar: false,
         }
       },
       {

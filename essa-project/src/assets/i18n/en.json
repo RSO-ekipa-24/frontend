@@ -30,7 +30,9 @@
       "Inbox": "Inbox",
       "Choose": "Choose",
       "DragAndDrop": "Drag and drop or",
-      "ClickHere": "Click here"
+      "ClickHere": "Click here",
+      "Success": "Success",
+      "Error": "Error"
     },
     "Fields": {
       "Color": "Color",
@@ -44,6 +46,10 @@
     "AddProperty": "Add property",
     "AddPropertyGroup": "Add Property Group",
     "EditProperty": "Edit Property",
+    "DeleteProperty": "Delete property",
+    "DeletePropertyWarning": "Are you sure you want to delete property {{propertyName}}?",
+    "DeletePropertySuccessMessage": "Property was successfully deleted.",
+    "DeletePropertyErrorMessage": "An error ocurred when deleting the property.",
     "Images": "Images"
   },
   "Settings": {

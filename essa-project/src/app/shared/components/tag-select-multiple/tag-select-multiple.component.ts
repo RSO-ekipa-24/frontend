@@ -33,18 +33,18 @@ export class TagSelectMultipleComponent implements ControlValueAccessor {
   public tagStore = inject(TagStore);
 
   // Input signal for selected tag IDs
-  public selectedTagIds = input<string[]>([]);
+  public selectedTags = input<Tag[]>([]);
   // Output signal for selected tag IDs changes
-  public selectedTagIdsChange = output<string[]>();
+  public selectedTagsChange = output<Tag[]>();
 
   // Property for selected tags (used in MultiSelect)
-  public selectedTags: Tag[] = [];
+  public currentTags: Tag[] = [];
 
   // Dialog visibility
   public addTagDialogVisible: boolean = false;
 
   // ControlValueAccessor callbacks
-  private onChange: (value: string[]) => void = () => {
+  private onChange: (value: Tag[]) => void = () => {
   };
   private onTouched: () => void = () => {
   };
@@ -58,16 +58,19 @@ export class TagSelectMultipleComponent implements ControlValueAccessor {
 
     // Sync selectedTags with selectedTagIds changes
     effect(() => {
-      const tagIds = this.selectedTagIds() || [];
-      this.selectedTags = this.tagStore.filteredTags().filter((tag) => tagIds.includes(tag.id));
+      const tagIds = this.selectedTags()?.map(x => x.id) || [];
+      const availableTags = this.tagStore.filteredTags(); // ← this line is critical
+      this.currentTags =  availableTags.filter((tag) => tagIds.includes(tag.id)) ?? [];
+      console.log(tagIds)
+      console.log(availableTags)
+      console.log(this.currentTags)
     });
   }
 
   // Handle MultiSelect changes
   onTagsChange(tags: Tag[]) {
-    const tagIds = tags.map((tag) => tag.id);
-    this.selectedTagIdsChange.emit(tagIds);
-    this.onChange(tagIds);
+    this.selectedTagsChange.emit(tags);
+    this.onChange(tags);
     this.onTouched();
   }
 
@@ -77,12 +80,13 @@ export class TagSelectMultipleComponent implements ControlValueAccessor {
   }
 
   // ControlValueAccessor: Write value from form control
-  writeValue(value: string[]): void {
-    this.selectedTags = this.tagStore.filteredTags().filter((tag) => value?.includes(tag.id));
+  writeValue(value: Tag[]): void {
+    const tagIds = value?.map(x => x.id) || [];
+    this.currentTags = this.tagStore.filteredTags().filter((tag) => tagIds?.includes(tag.id));
   }
 
   // ControlValueAccessor: Register change callback
-  registerOnChange(fn: (value: string[]) => void): void {
+  registerOnChange(fn: (value: Tag[]) => void): void {
     this.onChange = fn;
   }
 

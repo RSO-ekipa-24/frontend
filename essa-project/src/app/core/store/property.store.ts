@@ -104,23 +104,25 @@ export const PropertyStore = signalStore(
         )
       ),
 
-      deleteProperty: rxMethod<string>(
+      deleteProperty: rxMethod<{ propertyId: string; callback?: () => void }>(
         pipe(
-          tap(() => patchState(store, {isLoading: true, isLoaded: false, error: null})),
-          switchMap((propertyId) =>
+          tap(() => patchState(store, { isLoading: true, isLoaded: false, error: null })),
+          switchMap(({ propertyId, callback = () => {} }) =>
             propertyService.delete(propertyId).pipe(
               tapResponse({
                 next: () => {
                   patchState(
                     store,
-                    {isLoading: false, isLoaded: true, error: null},
-                    removeEntity(propertyId, {collection: PROPERTY_COLLECTION})
+                    { isLoading: false, isLoaded: true, error: null },
+                    removeEntity(propertyId, { collection: PROPERTY_COLLECTION })
                   );
                   store.clearCache();
+                  callback();
                 },
                 error: (error: unknown) => {
-                  patchState(store, {isLoading: false, isLoaded: false, error});
+                  patchState(store, { isLoading: false, isLoaded: false, error });
                   store.clearCache();
+                  callback();
                 },
               })
             )

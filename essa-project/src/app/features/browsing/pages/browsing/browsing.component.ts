@@ -4,7 +4,7 @@ import {PageHeaderComponent} from "../../../../shared/components/page-header/pag
 import {TranslatePipe} from "@ngx-translate/core";
 import {PropertyGridComponent} from "../../../admin/properties/components/property-grid/property-grid.component";
 import {SplitButton} from "primeng/splitbutton";
-import {PropertyGridPublicComponent} from '../../components/property-grid-public/property-grid.component';
+import {PropertyGridPublicComponent} from '../../components/property-grid-public/property-grid-public.component';
 
 @Component({
   selector: 'app-browsing',
