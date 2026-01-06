@@ -1,7 +1,7 @@
-import {Component, effect, inject, input, output} from '@angular/core';
+import {Component, effect, inject, input, output, viewChild} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {DialogModule} from 'primeng/dialog';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {InputNumberModule} from 'primeng/inputnumber';
@@ -11,6 +11,8 @@ import {
   TagSelectMultipleComponent
 } from '../../../../../shared/components/tag-select-multiple/tag-select-multiple.component';
 import {FileUploadComponent} from '../../../../../shared/components/file-upload/file-upload.component';
+import {FileUploadChange} from '../../../../../shared/models/file.model';
+import {ToastService} from '../../../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-property-dialog',
@@ -23,24 +25,28 @@ import {FileUploadComponent} from '../../../../../shared/components/file-upload/
     InputNumberModule,
     ReactiveFormsModule,
     TagSelectMultipleComponent,
-    FileUploadComponent,
+    FileUploadComponent
   ],
   templateUrl: './property-dialog.component.html',
   styleUrls: ['./property-dialog.component.scss'],
 })
 export class PropertyDialogComponent {
+  file = viewChild<FileUploadComponent>('file');
+
   visible = input<boolean>(false);
   visibleChange = output<boolean>();
 
   header = input<string>('Settings.Properties.AddProperty');
 
-  property = input<Property | null>({id: '', name: '', description: '', tags: []});
+  property = input<Property | null>({id: '', name: '', description: '', tags: [], images: []});
 
   protected isVisible = false;
   protected propertyForm: FormGroup;
   protected isEditMode = false;
 
+  private translateService = inject(TranslateService);
   private propertyStore = inject(PropertyStore);
+  private toastService = inject(ToastService);
   private fb = inject(FormBuilder);
 
   constructor() {
@@ -49,30 +55,30 @@ export class PropertyDialogComponent {
       name: ['', Validators.required],
       description: [''],
       tags: [[]],
-      images: [[]], // <-- new form control to hold File[]
+      existingImages: [[]],
+      newImages: [[]],
     });
 
     effect(() => {
       this.isVisible = this.visible();
 
-      const property = this.property() ?? {id: '', name: '', description: '', tags: []};
+      const property = this.property() ?? {id: '', name: '', description: '', tags: [], images: []};
       this.isEditMode = property.id !== '';
-
-      console.log(property)
 
       this.propertyForm.patchValue({
         id: property.id,
         name: property.name,
         description: property.description ?? '',
         tags: property.tags ?? [],
-        images: [],
+        existingImages: property.images ?? [],
+        newImages: [[]],
       });
     });
   }
 
-  // Called by app-file-upload when files change
-  onImagesSelected(files: File[]) {
-    this.propertyForm.get('images')?.setValue(files);
+  onImagesSelected(files: FileUploadChange) {
+    this.propertyForm.get('existingImages')?.setValue(files.items);
+    this.propertyForm.get('newImages')?.setValue(files.addedFiles);
   }
 
   onHide() {
@@ -84,17 +90,25 @@ export class PropertyDialogComponent {
   saveProperty() {
     if (this.propertyForm.valid) {
       const propertyData = this.propertyForm.value;
-      console.log('Saving property with images:', propertyData);
 
       if (propertyData.id === '') {
         this.propertyStore.createProperty({
           property: propertyData,
-          callback: () => this.onHide(),
+          files: this.propertyForm.value.newImages,
+          callback: () => {
+            this.toastService.showSuccessToast(this.translateService.instant('General.Buttons.Success'), this.translateService.instant('Properties.CreatePropertySuccessMessage'));
+            this.onHide();
+          },
         });
       } else {
         this.propertyStore.updateProperty({
           property: propertyData,
-          callback: () => this.onHide(),
+          addedFiles: this.propertyForm.value.newImages,
+          items: this.propertyForm.value.existingImages,
+          callback: () => {
+            this.toastService.showSuccessToast(this.translateService.instant('General.Buttons.Success'), this.translateService.instant('Properties.UpdatePropertySuccessMessage'));
+            this.onHide();
+          },
         });
       }
     }
@@ -108,5 +122,6 @@ export class PropertyDialogComponent {
       tags: [],
       images: [],
     });
+    this.file()?.reset();
   }
 }

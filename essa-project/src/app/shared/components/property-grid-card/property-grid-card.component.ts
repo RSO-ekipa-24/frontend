@@ -6,6 +6,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {FastAverageColor} from 'fast-average-color';
 import {Property} from '../../../features/admin/properties/models/property.model';
 import {Router} from '@angular/router';
+import {replaceLod} from '../../utils/file.utils';
 
 @Component({
   selector: 'app-property-grid-card',
@@ -29,12 +30,23 @@ export class PropertyGridCardComponent {
   gradientEndPosition = input<string>('100%');
   darkenPercentage = input<string>('40%');
 
+  private currentImageUrl = signal<string>('');
+  private averageColor = signal<string>('#000000'); // Consistent hex default
+
   backgroundGradient = computed(() => {
     const gradientColor = this.gradientStartColor() || this.averageColor();
-    return `linear-gradient(${this.gradientDirection()},
-            rgba(0, 0, 0, 0) ${this.gradientStartPosition()},
-            ${gradientColor} ${this.gradientEndPosition()}),
-            url(${this.imageUrl()})`;
+    const imageUrl = this.currentImageUrl();
+
+    let bg = `linear-gradient(${this.gradientDirection()},
+      rgba(0, 0, 0, 0) ${this.gradientStartPosition()},
+      ${gradientColor} ${this.gradientEndPosition()}
+    )`;
+
+    if (imageUrl) {
+      bg += `, url("${imageUrl}")`;
+    }
+
+    return bg;
   });
 
   cardStyles = computed(() => ({
@@ -43,34 +55,70 @@ export class PropertyGridCardComponent {
     backgroundPosition: 'center'
   }));
 
-  averageColor = signal('rgba(0, 0, 0, 1)');
-
   constructor() {
     effect(() => {
+      this.currentImageUrl.set('');
+      this.averageColor.set('#000000');
+
+      const primary = this.cssSafeUrl(replaceLod(this.imageUrl(), 'LOW') ?? '');
+      const fallback = this.cssSafeUrl(this.imageUrl());
+
+      if (!primary && !fallback) {
+        return;
+      }
+
       const img = new Image();
       img.crossOrigin = 'anonymous';
-      img.src = this.imageUrl();
+
+      let tryingFallback = false;
 
       img.onload = () => {
         const fac = new FastAverageColor();
-        this.averageColor.set(
-          this.darkenColor(fac.getColor(img).hex, parseInt(this.darkenPercentage().replace('%', ''), 10))
+        const color = fac.getColor(img);
+        const darkened = this.darkenColor(
+          color.hex,
+          parseInt(this.darkenPercentage().replace('%', ''), 10)
         );
+        this.averageColor.set(darkened);
+        this.currentImageUrl.set(img.src);
       };
+
+      img.onerror = () => {
+        if (!tryingFallback && fallback) {
+          tryingFallback = true;
+          img.src = fallback;
+        } else {
+          // Both failed (or no fallback) → use default dark color, no image
+          this.averageColor.set('#333333');
+          this.currentImageUrl.set('');
+        }
+      };
+
+      // Start with primary if available, otherwise directly try fallback
+      img.src = primary || fallback || '';
     });
   }
 
-  private darkenColor(hex: string, percent: number) {
+  public openDetails() {
+    if (!this.isPublic()) {
+      this.router.navigate([`/admin/properties/${this.property()?.id ?? ''}`]);
+    } else {
+      this.router.navigate([`/browsing/${this.property()?.id ?? ''}`]);
+    }
+  }
+
+  private darkenColor(hex: string, percent: number): string {
     const factor = (100 - percent) / 100;
     const [r, g, b] = hex.match(/\w\w/g)!.map(x => Math.floor(parseInt(x, 16) * factor));
     return `#${[r, g, b].map(x => x.toString(16).padStart(2, '0')).join('')}`;
   }
 
-  public openDetails() {
-    if (!this.isPublic()) {
-      this.router.navigate([`/admin/properties/${this.property()?.id ?? ''}`])
-    } else {
-      this.router.navigate([`/browsing/${this.property()?.id ?? ''}`])
+  private cssSafeUrl(url: string): string {
+    if (!url) return '';
+    try {
+      return new URL(url).toString();
+    } catch {
+      return '';
     }
   }
 }

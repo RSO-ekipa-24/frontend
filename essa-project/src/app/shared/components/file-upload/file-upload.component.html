@@ -1,66 +1,81 @@
-  <p-fileUpload
-    #fileUpload
-    styleClass="border-surface! rounded-lg!"
-    name="files[]"
-    [multiple]="multiple()"
+<div
+  class="border rounded-lg p-4 duration-300 ease-in-out flex flex-col items-center gap-4 cursor-pointer"
+  [ngClass]="isDragging ? 'border-primary transition delay-150' : 'border-surface'"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+  (click)="triggerFileSelect()"
+>
+  <input
+    #fileInput
+    type="file"
+    class="hidden"
+    [attr.multiple]="multiple() ? '' : null"
     [accept]="allowedFileTypes().join(',')"
-    [customUpload]="true"
-    [showUploadButton]="false"
-    [showCancelButton]="false"
-    chooseLabel="{{ 'General.Buttons.Choose' | translate }}"
-    (onSelect)="onSelectedFiles($event)"
-  >
-    <ng-template #content let-files let-chooseCallback="chooseCallback" let-removeFileCallback="removeFileCallback">
-      <div class="flex flex-col w-full p-2 gap-2 items-center justify-center">
-        @if (files?.length > 0) {
-              @for (file of files; track $index; let i = $index) {
-                <div class="flex flex-row items-center w-full gap-4 border-surface! rounded-md! border-1! overflow-hidden!">
-                  @if (file.type.startsWith('image/')) {
-                    <div class="image-container">
-                      <img
-                        role="presentation"
-                        [alt]="file.name"
-                        [src]="file.objectURL"
-                        class="image"
-                      />
-                    </div>
-                  } @else {
-                    <i class="pi pi-file text-5xl text-primary"></i>
-                  }
+    (change)="onFileInput($event)"
+  />
 
-                  <span class="font-medium text-center max-w-60 text-ellipsis overflow-hidden whitespace-nowrap">
-                    {{ file.name }}
-                  </span>
-                  <span class="text-sm text-500">{{ formatSize(file.size) }}</span>
-                  <p-button
-                    icon="pi pi-times"
-                    class="ml-auto mr-2"
-                    (onClick)="onRemoveFile($event, file, removeFileCallback, i)"
-                    [outlined]="true"
-                    [rounded]="true"
-                    [size]="'small'"
-                    severity="danger"
-                  />
-                </div>
-              }
+  <div class="flex flex-col w-full p-2 gap-2 items-center justify-center">
+
+    <!-- Existing items -->
+    @for (item of existingItems; track $index) {
+      <div class="flex flex-row items-center w-full gap-4 border-surface! rounded-md! border-1! overflow-hidden!">
+        <img
+          [src]="item.imageUrl"
+          class="w-16 h-16 object-cover rounded-left"
+        />
+
+        <span class="font-medium truncate max-w-xs">
+          {{ item.imageUrl | filenameFromUrl }}
+        </span>
+
+        <p-button
+          class="ml-auto p-2"
+          severity="danger"
+          icon="pi pi-times"
+          [rounded]="true"
+          [text]="true"
+          (onClick)="removeExisting($event, item)"
+        />
+      </div>
+    }
+
+    <!-- New files -->
+    @for (file of newFiles; track $index) {
+      <div class="flex flex-row items-center w-full gap-4 border-surface! rounded-md! border-1! overflow-hidden!">
+        @if (file.type.startsWith('image/')) {
+          <img
+            [src]="file | fileUrlFromObject"
+            class="w-16 h-16 object-cover rounded-left"
+          />
         } @else {
-            <i class="pi pi pi-images pt-8 !text-6xl text-gray-400 dark:text-white"></i>
-            <div class="flex flex-row items-center justify-center !text-secondary mt-2 mb-4">
-              <p class="mr-1">{{ 'General.Buttons.DragAndDrop' | translate }}</p>
-              <p-button
-                styleClass="p-1!"
-                (onClick)="choose($event, chooseCallback)"
-                [text]="true"
-                [label]="'General.Buttons.ClickHere' | translate"
-              />
-            </div>
+          <i class="pi pi-file text-3xl text-primary"></i>
         }
 
+        <div class="flex flex-col overflow-hidden">
+          <span class="font-medium truncate">{{ file.name }}</span>
+          <span class="text-sm text-500">{{ formatSize(file.size) }}</span>
+        </div>
+
+        <p-button
+          class="ml-auto p-2"
+          severity="danger"
+          icon="pi pi-times"
+          [rounded]="true"
+          [text]="true"
+          (onClick)="removeNew($event, file)"
+        />
       </div>
-    </ng-template>
+    }
 
-    <ng-template #header></ng-template>
-    <ng-template #file></ng-template>
-    <ng-template #empty></ng-template>
+    <!-- Empty state -->
+    @if (existingItems.length === 0 && newFiles.length === 0) {
+      <i class="pi pi pi-images pt-8 !text-6xl text-gray-400 dark:text-white"></i>
+      <div class="flex flex-row items-center justify-center !text-secondary mt-2 mb-4">
+        <p class="mr-1">{{ 'General.Buttons.DragAndDrop' | translate }}</p>
+        <p class="text-primary p-1"> {{ 'General.Buttons.ClickHere' | translate }}</p>
+      </div>
+    }
 
-  </p-fileUpload>
+  </div>
+</div>

@@ -33,10 +33,12 @@
       <div class="flex flex-col gap-2 mb-4">
         <label for="images" class="font-semibold text-sm">{{ 'Properties.Images' | translate }}</label>
         <app-file-upload
+          #file
           id="images"
           [multiple]="true"
           [allowedFileTypes]="['image/*']"
-          (onFilesSelected)="onImagesSelected($event)"
+          [files]="property()?.images ?? []"
+          (changes)="onImagesSelected($event)"
         ></app-file-upload>
       </div>
     </div>

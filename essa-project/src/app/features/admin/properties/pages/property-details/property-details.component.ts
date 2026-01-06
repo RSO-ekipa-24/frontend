@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, inject, Signal} from '@angular/core';
+import {Component, OnDestroy, OnInit, inject, Signal, signal} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Subject, takeUntil, filter, combineLatest } from 'rxjs';
 import { computed } from '@angular/core';
@@ -13,18 +13,20 @@ import {DeleteDialogComponent} from '../../../../../shared/components/delete-dia
 import {ToastService} from '../../../../../shared/services/toast.service';
 import {PropertyDialogComponent} from '../../components/property-dialog/property-dialog.component';
 import {PropertyDetailsDataComponent} from '../../components/property-details-data/property-details-data.component';
+import {MediumLayoutComponent} from '../../../../../shared/components/medium-layout/medium-layout.component';
+import {Property} from '../../models/property.model';
 
 @Component({
   selector: 'app-property-details',
   standalone: true,
   imports: [
-    FluidLayoutComponent,
     PageHeaderComponent,
     SplitButton,
     TranslatePipe,
     DeleteDialogComponent,
     PropertyDetailsDataComponent,
     PropertyDialogComponent,
+    MediumLayoutComponent,
   ],
   templateUrl: './property-details.component.html',
   styleUrl: './property-details.component.scss',
@@ -37,13 +39,13 @@ export class PropertyDetailsComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private destroy$ = new Subject<void>();
 
-  propertyId: string | null = null;
+  propertyId = signal<string | null>(null);
   editPropertyDialogVisible = false;
   deletePropertyDialogVisible = false;
 
   property = computed(() => {
-    if (!this.propertyId) return null;
-    return this.propertyStore.filteredProperties().find(p => p.id == this.propertyId) ?? null;
+    if (!this.propertyId() && !this.propertyStore.isLoaded()) return null;
+    return this.propertyStore.filteredProperties().find(p => p.id == this.propertyId()) ?? null;
   });
 
   public gridActions = computed(() => {
@@ -67,9 +69,9 @@ export class PropertyDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(params => {
-      this.propertyId = params.get('propertyId');
+      this.propertyId.set(params.get('propertyId'));
 
-      if (this.propertyId) {
+      if (this.propertyId()) {
         if (!this.propertyStore.isLoaded() && !this.propertyStore.isLoading()) {
           this.propertyStore.load();
         }
@@ -89,7 +91,7 @@ export class PropertyDetailsComponent implements OnInit, OnDestroy {
   public deleteProperty() {
     if (this.propertyId) {
       this.propertyStore.deleteProperty({
-        propertyId: this.propertyId,
+        propertyId: this.propertyId() ?? '',
           callback: () => {
           if (this.propertyStore.error()) {
             this.toastService.showErrorToast(this.translateService.instant('General.Buttons.Error'), this.translateService.instant('Properties.DeletePropertyErrorMessage'));
