@@ -32,7 +32,8 @@
       "DragAndDrop": "Drag and drop or",
       "ClickHere": "Click here",
       "Success": "Success",
-      "Error": "Error"
+      "Error": "Error",
+      "FullScreen": "Full Screen"
     },
     "Fields": {
       "Color": "Color",
@@ -48,8 +49,12 @@
     "EditProperty": "Edit Property",
     "DeleteProperty": "Delete property",
     "DeletePropertyWarning": "Are you sure you want to delete property {{propertyName}}?",
+    "CreatePropertySuccessMessage": "Property was successfully created.",
+    "CreatePropertyErrorMessage": "An error occurred when creating the property.",
+    "UpdatePropertySuccessMessage": "Property was successfully created.",
+    "UpdatePropertyErrorMessage": "An error occurred when creating the property.",
     "DeletePropertySuccessMessage": "Property was successfully deleted.",
-    "DeletePropertyErrorMessage": "An error ocurred when deleting the property.",
+    "DeletePropertyErrorMessage": "An error occurred when deleting the property.",
     "Images": "Images"
   },
   "Settings": {

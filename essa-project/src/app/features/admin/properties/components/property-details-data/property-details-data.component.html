@@ -1,16 +1,39 @@
 <div class="flex flex-row w-full gap-8">
   <div class="w-full">
     <p-galleria
-      containerClass="rounded-lg! border-surface! border-1!"
-      [value]="images"
-      [numVisible]="7"
+      #galleria
+      [value]="images()"
       [circular]="true"
+      [showItemNavigators]="fullscreen()"
+      [showItemNavigatorsOnHover]="true"
     >
+      <!-- Main image -->
       <ng-template #item let-item>
-        <img [src]="item.itemImageSrc" style="width: 100%; display: block; max-height: 30rem; object-fit: cover" />
+        <div class="relative w-full">
+          <p-button
+            class="absolute top-4 right-4"
+            icon="pi pi-expand"
+            severity="secondary"
+            rounded
+            (onClick)="toggleFullscreen()"
+          />
+
+          <img
+            [src]="item?.imageUrl"
+            [default]="item?.fallbackUrl"
+            [ngClass]="!fullscreen() ? 'max-h-[25rem]' : ''"
+            class="w-full object-cover block"
+          />
+        </div>
       </ng-template>
+
+      <!-- Thumbnails -->
       <ng-template #thumbnail let-item>
-        <img [src]="item.thumbnailImageSrc" style="width: 100%; display: block; max-height: 5rem; object-fit: cover" />
+        <img
+          [src]="item.thumbnailImageUrl"
+          [default]="item.fallbackUrl"
+          class="w-full max-h-[5rem] object-cover"
+        />
       </ng-template>
     </p-galleria>
   </div>

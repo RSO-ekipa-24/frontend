@@ -1,4 +1,4 @@
-<app-fluid-layout>
+<app-medium-layout>
   <app-page-header [title]="property()?.name ?? ''">
     <ng-template #toolbar>
       <p-splitbutton
@@ -11,7 +11,7 @@
     </ng-template>
   </app-page-header>
   <app-property-details-data [property]="property()" ></app-property-details-data>
-</app-fluid-layout>
+</app-medium-layout>
 
 <app-property-dialog
   [(visible)]="editPropertyDialogVisible"

@@ -61,9 +61,6 @@ export class TagSelectMultipleComponent implements ControlValueAccessor {
       const tagIds = this.selectedTags()?.map(x => x.id) || [];
       const availableTags = this.tagStore.filteredTags(); // ← this line is critical
       this.currentTags =  availableTags.filter((tag) => tagIds.includes(tag.id)) ?? [];
-      console.log(tagIds)
-      console.log(availableTags)
-      console.log(this.currentTags)
     });
   }
 

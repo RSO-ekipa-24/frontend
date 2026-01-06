@@ -26,6 +26,11 @@ const apiUrlCondition = createInterceptorCondition<IncludeBearerTokenCondition>(
   urlPattern: new RegExp(`^${environment.apiUrl}(?!/public)`, 'i'),
 });
 
+const filesUrlCondition = createInterceptorCondition<IncludeBearerTokenCondition>({
+  urlPattern: new RegExp(`^${environment.filesUrl}`, 'i'),
+});
+
+
 export const appConfig: ApplicationConfig = {
   providers: [
     importProvidersFrom(BrowserModule),
@@ -48,7 +53,7 @@ export const appConfig: ApplicationConfig = {
     }),
     {
       provide: INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG,
-      useValue: [apiUrlCondition]
+      useValue: [apiUrlCondition, filesUrlCondition]
     },
     provideTranslateService({
       loader: {

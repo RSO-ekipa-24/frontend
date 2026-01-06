@@ -70,7 +70,6 @@ export class TagDialogComponent {
   saveTag() {
     if (this.tagForm.valid) {
       const tagData = this.tagForm.value;
-      console.log(tagData)
       if (tagData.id == '') {
         this.tagStore.createTag({
           tag: tagData,
