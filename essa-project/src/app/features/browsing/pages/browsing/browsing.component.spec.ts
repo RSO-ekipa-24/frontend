@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PropertyStore } from '@core/store/property.store';
 import { TagStore } from '@core/store/tag.store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {provideHttpClient} from '@angular/common/http';
 
 describe('BrowsingComponent', () => {
   let component: BrowsingComponent;
@@ -29,6 +30,7 @@ describe('BrowsingComponent', () => {
         NoopAnimationsModule
       ],
       providers: [
+        provideHttpClient(),
         { provide: PropertyStore, useValue: mockPropertyStore },
         { provide: TagStore, useValue: mockTagStore }
       ]

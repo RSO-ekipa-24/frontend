@@ -14,8 +14,24 @@ describe('FileGridComponent', () => {
   let fixture: ComponentFixture<FileGridComponent>;
 
   const mockFileStore = {
-    activeFiles: signal([{ id: '1', fileName: 'test.pdf', status: 'AVAILABLE', fileSize: 1024 }]),
-    deletedFiles: signal([]),
+    activeFiles: signal([
+      {
+        id: '1',
+        fileName: 'test.pdf',
+        status: 'AVAILABLE',
+        fileSize: 1024,
+        contentType: 'application/pdf'
+      }
+    ]),
+    deletedFiles: signal([
+      {
+        id: '2',
+        fileName: 'deleted.txt',
+        status: 'DELETED',
+        fileSize: 500,
+        contentType: 'text/plain'
+      }
+    ]),
     isLoading: signal(false),
     loadActiveFiles: jasmine.createSpy('loadActiveFiles'),
     loadDeletedFiles: jasmine.createSpy('loadDeletedFiles'),
