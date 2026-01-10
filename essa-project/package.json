@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prettier:all": "npx prettier \"**/*.{js,jsx,ts,tsx,html,css,scss,mdx}\" --write"
+    "prettier:all": "npx prettier \"**/*.{js,jsx,ts,tsx,html,css,scss,mdx}\" --write",
+    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadless"
   },
   "private": true,
   "dependencies": {
@@ -24,7 +25,6 @@
     "@ngx-translate/core": "^16.0.4",
     "@ngx-translate/http-loader": "^16.0.1",
     "@primeng/themes": "^19.0.10",
-    "@tailwindcss/postcss": "^4.0.14",
     "angular-oauth2-oidc": "^19.0.0",
     "date-fns": "^4.1.0",
     "essa-project": "file:",
@@ -43,8 +43,9 @@
     "@angular-devkit/build-angular": "^19.2.3",
     "@angular/cli": "^19.2.3",
     "@angular/compiler-cli": "^19.2.0",
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/jasmine": "~5.1.0",
-    "autoprefixer": "^10.4.21",
+    "autoprefixer": "^10.4.23",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -53,7 +54,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
-    "tailwindcss": "^4.0.14",
+    "tailwindcss": "^4.1.18",
     "typescript": "~5.7.2"
   }
 }

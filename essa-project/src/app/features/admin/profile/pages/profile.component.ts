@@ -9,7 +9,6 @@ import {toSignal} from '@angular/core/rxjs-interop';
 import {map} from 'rxjs';
 import {CompactLayoutComponent} from '../../../../shared/components/compact-layout/compact-layout.component';
 import {Button} from 'primeng/button';
-import {ProfileSettingsComponent} from '../components/profile-settings/profile-settings.component';
 
 @Component({
   selector: 'app-profile',
@@ -17,10 +16,8 @@ import {ProfileSettingsComponent} from '../components/profile-settings/profile-s
     CompactLayoutComponent,
     PageHeaderComponent,
     TranslatePipe,
-    SplitButton,
     Avatar,
     Button,
-    ProfileSettingsComponent
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'

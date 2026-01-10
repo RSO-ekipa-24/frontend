@@ -32,7 +32,7 @@ export class TagDialogComponent {
 
   header = input<string>('Settings.Tags.AddTag');
 
-  tag = input<Tag>({id: '', name: '', color: ''});
+  tag = input<Tag>({id: '', name: '', color: '#000000'});
 
   protected isVisible = false;
   protected tagForm: FormGroup;
@@ -56,7 +56,7 @@ export class TagDialogComponent {
       this.tagForm.setValue({
         id: tag.id,
         name: tag.name,
-        color: tag.color ?? '',
+        color: tag.color ?? '#000000',
       });
     });
   }
