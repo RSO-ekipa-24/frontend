@@ -16,6 +16,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {Button} from 'primeng/button';
 import {replaceLod} from '../../../../../shared/utils/file.utils';
 import {ImagePreloadDirective} from '../../../../../shared/directives/image-preload.directive';
+import {LocalizeImageTagPipe} from '../../pipes/localize-image-tag.pipe';
 
 @Component({
   selector: 'app-property-details-data',
@@ -26,7 +27,8 @@ import {ImagePreloadDirective} from '../../../../../shared/directives/image-prel
     GalleriaModule,
     TranslateModule,
     Button,
-    ImagePreloadDirective
+    ImagePreloadDirective,
+    LocalizeImageTagPipe
   ],
   styleUrl: './property-details-data.component.scss'
 })
@@ -45,7 +47,8 @@ export class PropertyDetailsDataComponent implements OnDestroy {
     this.property()?.images?.map(x => ({
       imageUrl: replaceLod(x.imageUrl, 'MEDIUM'),
       thumbnailImageUrl: replaceLod(x.imageUrl, 'LOW'),
-      fallbackUrl: x.imageUrl
+      fallbackUrl: x.imageUrl,
+      tags: x.tags
     })) ?? []
   );
 
@@ -53,7 +56,8 @@ export class PropertyDetailsDataComponent implements OnDestroy {
     this.property()?.images?.map(x => ({
       imageUrl: replaceLod(x.imageUrl, 'HIGH'),
       thumbnailImageUrl: replaceLod(x.imageUrl, 'LOW'),
-      fallbackUrl: x.imageUrl
+      fallbackUrl: x.imageUrl,
+      tags: x.tags
     })) ?? []
   );
 

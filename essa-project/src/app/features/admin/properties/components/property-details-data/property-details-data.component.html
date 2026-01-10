@@ -10,13 +10,26 @@
       <!-- Main image -->
       <ng-template #item let-item>
         <div class="relative w-full">
-          <p-button
-            class="absolute top-4 right-4"
-            icon="pi pi-expand"
-            severity="secondary"
-            rounded
-            (onClick)="toggleFullscreen()"
-          />
+          <div class="flex flex-row w-full absolute gap-2">
+            @if(item?.tags?.length > 0) {
+              <app-tag
+                class="ml-4 mt-4"
+                [size]="'lg'"
+                [imageUrl]="item.imageUrl"
+                [nameColor]="'#ffffff'"
+                [name]=" (item?.tags[0] ?? '') | localizeImageTag"
+                [backgroundOpacity]="0.4">
+              </app-tag>
+            }
+
+            <p-button
+              class="ml-auto mr-4 mt-4"
+              icon="pi pi-expand"
+              severity="secondary"
+              rounded
+              (onClick)="toggleFullscreen()"
+            />
+          </div>
 
           <img
             [src]="item?.imageUrl"
@@ -24,9 +37,9 @@
             [ngClass]="!fullscreen() ? 'max-h-[25rem]' : ''"
             class="w-full object-cover block"
           />
+
         </div>
       </ng-template>
-
       <!-- Thumbnails -->
       <ng-template #thumbnail let-item>
         <img
