@@ -17,13 +17,14 @@ env:
   WORKING_DIR: './essa-project'
 
 jobs:
-  test-and-build:
-    name: Test & Build
+  build-and-deploy:
+    name: Test, Build, and Push
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # --- SECTION 1: Build & Test ---
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -35,38 +36,15 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
         run: npm ci
 
-      # --- ADDING UNIT TESTS HERE ---
       - name: Run Unit Tests
         working-directory: ${{ env.WORKING_DIR }}
-        # Runs headless so it doesn't try to open a window on the server
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
 
       - name: Build Angular App
         working-directory: ${{ env.WORKING_DIR }}
         run: npm run build -- --configuration production
 
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-dist
-          # Points to where Angular builds the files
-          path: ${{ env.WORKING_DIR }}/dist/
-
-  docker-build-push:
-    name: Build Docker & Push
-    needs: test-and-build
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-dist
-          path: ${{ env.WORKING_DIR }}/dist/
-
+      # --- SECTION 2: Docker & GCP ---
       - id: auth
         name: Authenticate to GCP
         uses: google-github-actions/auth@v2
@@ -79,9 +57,7 @@ jobs:
 
       - name: Build & Push Docker Image
         run: |
-          IMAGE_TAG="${GAR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${IMAGE}:${GITHUB_SHA}"
-          # -f points to the Dockerfile inside essa-project
-          # The last argument (./essa-project) is the context
+          IMAGE_TAG="${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}"
           docker build \
             -f ${{ env.WORKING_DIR }}/Dockerfile \
             -t "$IMAGE_TAG" \
