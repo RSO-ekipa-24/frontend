@@ -5,13 +5,15 @@ import {canActivateAuth} from '@core/auth/guards/auth.guard';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./features/home/pages/home/home.component').then(c => c.HomeComponent),
+    // loadComponent: () => import('./features/home/pages/home/home.component').then(c => c.HomeComponent),
     data: {
       label: 'General.Pages.Home',
       icon: 'pi pi-home',
       navbar: false,
       sidebar: false,
     },
+    pathMatch: 'full',
+    redirectTo: 'browsing'
   },
   {
     path: '',
@@ -22,7 +24,7 @@ export const routes: Routes = [
         data: {
           label: 'General.Pages.Browse',
           icon: 'pi pi-map-marker',
-          navbar: true,
+          navbar: false,
           sidebar: false,
         }
       },
@@ -70,7 +72,7 @@ export const routes: Routes = [
         data: {
           label: 'General.Pages.Dashboard',
           icon: 'pi pi-home',
-          navbar: true,
+          navbar: false,
           sidebar: false,
         }
       },
@@ -81,7 +83,7 @@ export const routes: Routes = [
         data: {
           label: 'General.Pages.Properties',
           icon: 'pi pi-building',
-          navbar: false,
+          navbar: true,
           sidebar: true,
         }
       },

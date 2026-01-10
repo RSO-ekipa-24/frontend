@@ -1,19 +1,15 @@
 <app-tab-view [tabs]="tabs" [rounded]="true" titleProperty="title">
-  <ng-template #toolbar>
-    <app-search-box></app-search-box>
-  </ng-template>
-
   <ng-template #content>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      @for (property of propertyStore.filteredProperties(); track $index) {
+      @for (property of propertyPublicStore.filteredProperties(); track $index) {
         <app-property-grid-card
-          imageUrl="../../../../assets/img/test-image.jpg"
+          [isPublic]="true"
+          [imageUrl]="property.images[0]?.imageUrl ?? ''"
           [cardTitle]="property.name"
           gradientStartPosition="50%"
           gradientEndPosition="80%"
           darkenPercentage="60%"
           [property]="property"
-          [isPublic]="true"
         >
         </app-property-grid-card>
       }

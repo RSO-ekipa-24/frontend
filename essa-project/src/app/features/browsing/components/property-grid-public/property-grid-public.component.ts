@@ -15,7 +15,7 @@ import {
   TagSelectMultipleComponent
 } from '../../../../shared/components/tag-select-multiple/tag-select-multiple.component';
 import {SearchBoxComponent} from '../../../../shared/components/search-box/search-box.component';
-import {PropertyStore} from '@core/store/property.store';
+import {PropertyPublicStore} from '@core/store/property-public.store';
 
 @Component({
   selector: 'app-property-grid-public',
@@ -24,7 +24,7 @@ import {PropertyStore} from '@core/store/property.store';
   styleUrl: './property-grid-public.component.scss'
 })
 export class PropertyGridPublicComponent {
-  public propertyStore = inject(PropertyStore);
+  public propertyPublicStore = inject(PropertyPublicStore);
 
   private translateService: TranslateService = inject(TranslateService);
 
@@ -35,6 +35,6 @@ export class PropertyGridPublicComponent {
       {title: this.translateService.instant("General.Buttons.All"), value: 0},
     ];
 
-    this.propertyStore.load();
+    this.propertyPublicStore.loadAll();
   }
 }

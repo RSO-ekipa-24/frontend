@@ -15,6 +15,7 @@ import {
   PropertyDetailsDataComponent
 } from '../../../admin/properties/components/property-details-data/property-details-data.component';
 import {MediumLayoutComponent} from '../../../../shared/components/medium-layout/medium-layout.component';
+import {PropertyPublicStore} from '@core/store/property-public.store';
 @Component({
   selector: 'app-property-details-public',
   standalone: true,
@@ -33,7 +34,7 @@ export class PropertyDetailsPublicComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private translateService = inject(TranslateService);
   private toastService = inject(ToastService);
-  private propertyStore = inject(PropertyStore);
+  private propertyPublicStore = inject(PropertyPublicStore);
   private router = inject(Router);
   private destroy$ = new Subject<void>();
 
@@ -41,7 +42,7 @@ export class PropertyDetailsPublicComponent implements OnInit, OnDestroy {
 
   property = computed(() => {
     if (!this.propertyId) return null;
-    return this.propertyStore.filteredProperties().find(p => p.id == this.propertyId) ?? null;
+    return this.propertyPublicStore.filteredProperties().find(p => p.id == this.propertyId) ?? null;
   });
 
 
@@ -50,13 +51,13 @@ export class PropertyDetailsPublicComponent implements OnInit, OnDestroy {
       this.propertyId = params.get('propertyId');
 
       if (this.propertyId) {
-        if (!this.propertyStore.isLoaded() && !this.propertyStore.isLoading()) {
-          this.propertyStore.load();
+        if (!this.propertyPublicStore.isLoaded() && !this.propertyPublicStore.isLoading()) {
+          this.propertyPublicStore.loadAll();
         }
       }
 
       if (!this.property()) {
-        this.router.navigate([`/browse`])
+        this.router.navigate([`/browsing`])
       }
     });
   }

@@ -15,7 +15,7 @@ export class PropertyService {
   }
 
   getAll(): Observable<Property[]> {
-    return this.http.get<Property[]>(this.baseUrl);
+    return this.http.get<Property[]>(`${this.baseUrl}/all`);
   }
 
   getPersonal(): Observable<Property[]> {
