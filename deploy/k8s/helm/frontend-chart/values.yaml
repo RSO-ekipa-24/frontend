@@ -1,0 +1,20 @@
+config:
+  keyCloakUrl: "https://keycloak.myproperty-essa.com"
+  apiUrl: "https://core.myproperty-essa.com"
+  filesUrl: "https://files.myproperty-essa.com"
+
+frontend:
+  deployment:
+    name: frontend-app
+    replicaCount: 2
+    image:
+      repository: europe-central2-docker.pkg.dev/artful-reactor-351917/essa-images/frontend
+      tag: "latest"
+      pullPolicy: IfNotPresent
+      containerPort: 80
+
+  service:
+    serviceName: frontend-internal-service
+    type: ClusterIP
+    port: 80
+    targetPort: 80
