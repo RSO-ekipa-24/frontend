@@ -1,5 +1,5 @@
 import {Tag} from '../../settings/tags/models/tag.model';
-import {ImagePreviewResponse} from '../../../../shared/models/file.model';
+import {ImagePreviewResponse} from '../../files/models/file.model';
 
 export interface Property {
   id: string;

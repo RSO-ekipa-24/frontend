@@ -11,7 +11,7 @@ import {withLoadingState} from './extensions/loading';
 import {withEntityCache} from '@core/store/extensions/entity-cache';
 import {ImageService} from '../../shared/services/image.service';
 import {replaceLod} from '../../shared/utils/file.utils';
-import {ImagePreviewResponse} from '../../shared/models/file.model';
+import {ImagePreviewResponse} from '../../features/admin/files/models/file.model';
 
 // Constants
 const PROPERTY_COLLECTION = '_property';

@@ -44,18 +44,18 @@
       class="h-full"
       styleClass="rounded-lg! border-surface!!">
       <div class="flex flex-col gap-2 mb-4">
-        <label for="description" class="font-semibold text-sm">{{ 'General.Fields.Description' | translate }}</label>
-        <p id="description" class="border-surface!" pSize="small">{{ property()?.description }} </p>
+        <label for="description" class="font-semibold text-l">{{ 'General.Fields.Description' | translate }}</label>
+        <p id="description" class="border-surface! opacity-60" pSize="small">{{ property()?.description }} </p>
       </div>
 
-      <div class="flex flex-col gap-2 mb-4">
-        <label for="tags" class="font-semibold text-sm">{{ 'Settings.Tags.Tags' | translate }}</label>
-        <div id="tags">
-          @for (tag of property()?.tags ?? []; track $index) {
-            <app-tag class="mr-2" [name]="tag.name" [color]="tag.color"></app-tag>
-          }
+        <div class="flex flex-col gap-2">
+          <label for="tags" class="font-semibold text-l">{{ 'Settings.Tags.Tags' | translate }}</label>
+          <div id="tags">
+            @for (tag of property()?.tags ?? []; track $index) {
+              <app-tag class="mr-2" [name]="tag.name" [color]="tag.color"></app-tag>
+            }
+          </div>
         </div>
-      </div>
     </p-card>
   </div>
 </div>

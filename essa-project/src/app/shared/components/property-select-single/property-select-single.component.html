@@ -1,0 +1,10 @@
+<p-select
+  [options]="propertyStore.properties()"
+  [(ngModel)]="currentProperty"
+  placeholder="{{ 'Properties.SelectProperty' | translate }}"
+  [virtualScroll]="true"
+  optionLabel="name"
+  class="w-full md:w-56"
+  (onChange)="onPropertyChange($event.value)">
+</p-select>
+

@@ -71,7 +71,7 @@ export const routes: Routes = [
           label: 'General.Pages.Dashboard',
           icon: 'pi pi-home',
           navbar: true,
-          sidebar: true,
+          sidebar: false,
         }
       },
       {
@@ -104,7 +104,7 @@ export const routes: Routes = [
           label: 'General.Pages.Tenants',
           icon: 'pi pi-users',
           navbar: false,
-          sidebar: true,
+          sidebar: false,
         }
       },
       {
@@ -115,15 +115,15 @@ export const routes: Routes = [
           label: 'General.Pages.Payments',
           icon: 'pi pi-wallet',
           navbar: false,
-          sidebar: true,
+          sidebar: false,
         }
       },
       {
-        path: 'documents',
-        loadComponent: () => import('./features/admin/documents/pages/documents/documents.component').then(c => c.DocumentsComponent),
+        path: 'files',
+        loadComponent: () => import('./features/admin/files/pages/files/files.component').then(c => c.FilesComponent),
         canActivate: [canActivateAuth],
         data: {
-          label: 'General.Pages.Documents',
+          label: 'General.Pages.Files',
           icon: 'pi pi-file',
           navbar: false,
           sidebar: true,

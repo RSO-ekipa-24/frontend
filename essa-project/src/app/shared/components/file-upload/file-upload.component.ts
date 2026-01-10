@@ -9,7 +9,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Button } from 'primeng/button';
-import {FileUploadChange} from '../../models/file.model';
+import {FileUploadChange} from '../../../features/admin/files/models/file.model';
 import {FilenameFromUrlPipe} from '../../pipes/file-name-from-url.pipe';
 import {FileUrlFromObjectPipe} from '../../pipes/file-url-from-object.pipe';
 

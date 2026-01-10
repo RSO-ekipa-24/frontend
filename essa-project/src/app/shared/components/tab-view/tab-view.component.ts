@@ -1,7 +1,14 @@
-import {Component, ContentChild, inject, input, TemplateRef} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {Tab, TabList, TabPanel, TabPanels, Tabs} from "primeng/tabs";
-import {TranslateService} from '@ngx-translate/core';
+import {
+  Component,
+  ContentChild,
+  inject,
+  input,
+  output,
+  TemplateRef,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from 'primeng/tabs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab-view',
@@ -12,24 +19,31 @@ import {TranslateService} from '@ngx-translate/core';
     TabList,
     TabPanel,
     TabPanels,
-    Tabs
+    Tabs,
   ],
   templateUrl: './tab-view.component.html',
-  styleUrls: ['./tab-view.component.scss']
+  styleUrls: ['./tab-view.component.scss'],
 })
 export class TabViewComponent<T extends Record<string, any>> {
   private translateService: TranslateService = inject(TranslateService);
 
   placeholderTab = [
-    {title: this.translateService.instant("General.Buttons.All"), value: 0},
+    { title: this.translateService.instant('General.Buttons.All'), value: 0 },
   ];
-  tabs = input<T[]>(this.placeholderTab as unknown as T[]);
-  activeTab = input(0);
-  rounded = input<boolean>(false)
 
-  titleProperty = input<string>('title'); // Default property name for tab title
+  tabs = input<T[]>(this.placeholderTab as unknown as T[]);
+
+  activeTab = input<number>(0);
+  activeTabChange = output<number>();
+
+  rounded = input<boolean>(false);
+  titleProperty = input<string>('title');
 
   @ContentChild('tab') tabTemplateRef?: TemplateRef<{ $implicit: T }>;
   @ContentChild('toolbar') toolbarTemplateRef?: TemplateRef<any>;
   @ContentChild('content') contentTemplateRef?: TemplateRef<{ $implicit: T }>;
+
+  onTabChange(index: any): void {
+    this.activeTabChange.emit(Number(index));
+  }
 }

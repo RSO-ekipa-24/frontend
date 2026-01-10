@@ -1,0 +1,73 @@
+<p-dialog
+  [header]="(isViewOnly ? 'Files.ViewFile' : 'Files.AddFile') | translate"
+  [(visible)]="isVisible"
+  [draggable]="false"
+  [resizable]="false"
+  [modal]="true"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '50vw' }"
+  (onHide)="onHide()"
+>
+  <form [formGroup]="fileForm">
+    <div class="flex flex-col gap-6">
+
+      <!-- File Name -->
+      <div class="flex flex-col gap-2">
+        <label class="font-semibold text-sm">
+          {{ 'General.Fields.FileName' | translate }}
+        </label>
+        <input
+          pInputText
+          formControlName="fileName"
+          [readonly]="isViewOnly"
+          class="border-surface!"
+          pSize="small"
+        />
+      </div>
+
+      <!-- Property -->
+      <div class="flex flex-col gap-2">
+        <label class="font-semibold text-sm">
+          {{ 'Properties.Property' | translate }}
+        </label>
+        <app-property-select-single
+          formControlName="property"
+          (selectedPropertyChange)="fileForm.get('property')?.setValue($event)"
+        />
+      </div>
+
+      <!-- File Upload - Only in Create Mode -->
+      @if (!isViewOnly) {
+        <div class="flex flex-col gap-2">
+          <label class="font-semibold text-sm">
+            {{ 'Files.File' | translate }}
+          </label>
+          <app-file-upload
+            #fileUpload
+            [multiple]="false"
+            (changes)="onFilesSelected($event)"
+          />
+        </div>
+      }
+
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      [label]="'General.Buttons.Cancel' | translate"
+      severity="secondary"
+      size="small"
+      (onClick)="onHide()"
+    />
+
+    @if (!isViewOnly) {
+      <p-button
+        [label]="'General.Buttons.Upload' | translate"
+        size="small"
+        [disabled]="fileForm.invalid"
+        (onClick)="saveFile()"
+      />
+    }
+  </ng-template>
+</p-dialog>

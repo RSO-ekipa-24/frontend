@@ -8,7 +8,7 @@
       "Messaging": "Messaging",
       "Tenants": "Tenants",
       "Payments": "Payments",
-      "Documents": "Documents",
+      "Files": "Files",
       "Organization": "Organization",
       "Settings": "Settings",
       "Tags": "Tags",
@@ -33,12 +33,17 @@
       "ClickHere": "Click here",
       "Success": "Success",
       "Error": "Error",
-      "FullScreen": "Full Screen"
+      "FullScreen": "Full Screen",
+      "Upload": "Upload",
+      "Download": "Download",
+      "Restore": "Restore"
     },
     "Fields": {
       "Color": "Color",
       "Description": "Description",
-      "Name": "Name"
+      "Name": "Name",
+      "FileName": "File Name",
+      "SelectFile": "Select File"
     }
   },
   "Properties": {
@@ -51,11 +56,35 @@
     "DeletePropertyWarning": "Are you sure you want to delete property {{propertyName}}?",
     "CreatePropertySuccessMessage": "Property was successfully created.",
     "CreatePropertyErrorMessage": "An error occurred when creating the property.",
-    "UpdatePropertySuccessMessage": "Property was successfully created.",
-    "UpdatePropertyErrorMessage": "An error occurred when creating the property.",
+    "UpdatePropertySuccessMessage": "Property was successfully updated.",
+    "UpdatePropertyErrorMessage": "An error occurred when updating the property.",
     "DeletePropertySuccessMessage": "Property was successfully deleted.",
     "DeletePropertyErrorMessage": "An error occurred when deleting the property.",
-    "Images": "Images"
+    "Images": "Images",
+    "SelectProperty": "Select property"
+
+  },
+  "Files": {
+    "File": "File",
+    "Active": "Active",
+    "Trash": "Trash",
+    "Filename": "Name",
+    "ContentType": "Type",
+    "FileSize": "Size",
+    "DateUploaded": "Uploaded",
+    "DateModified": "Modified",
+    "Status": "Status",
+    "Tags": "Tags",
+    "AddFile": "Add File",
+    "MoveToTrash": "Move to trash",
+    "CreateFileSuccessMessage": "File was successfully created.",
+    "CreateFileErrorMessage": "An error occurred when creating the file.",
+    "DownloadFileErrorMessage": "An error occurred when downloading the file.",
+    "MoveFileToTrashWarning": "Are you sure you want to move {{fileName}} to trash?",
+    "MoveFileToTrashSuccessMessage": "File was successfully moved to trash.",
+    "MoveFileToTrashErrorMessage": "An error occurred when moving file to trash.",
+    "RestoreFileSuccessMessage": "File was successfully restored.",
+    "RestoreFileErrorMessage": "An error occurred when restoring file."
   },
   "Settings": {
     "Tags": {
