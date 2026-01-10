@@ -1,8 +1,30 @@
 # Frontend 🌐
 
-Application frontend service.
+## Overview
+This service provides a web-based user interface for the application. It allows users to present their properties on the market, add images and files to properties and browse listings of properties from other users. It communicates with the **Core** and **File** service via REST APIs.
 
----
+### Branching Strategy
+- **main**: The production-ready branch.
+- **dev**: The integration branch for features and fixes, often considered the "next release" branch.
+- **feature/**: Branches for developing new features. These are created from `dev` and merged back when complete.
+- **bugfix/**: Branches for fixing bugs in the `dev` branch.
+- **release/**: Branches for preparing a new production release.
+- **hotfix/**: Branches for fixing critical issues in the `main` branch.
+
+## Technology stack :computer:
+
+| Category                   | Technology / Tool           |
+|----------------------------|----------------------------|
+| Frontend Framework         | Angular                    |
+| UI Component Library       | PrimeNG                    |
+| CSS Framework              | Tailwind CSS               |
+| Build Tool                 | npm / Webpack              |
+| Code Formatting            | Prettier                   |
+| Containerization           | Docker (Nginx)             |
+| CI/CD Automation           | GitHub Actions             |
+
+## Microservice relations
+The Frontend is a client-side application that communicates with the **Core** service via REST. It does not communicate with Kafka directly; it relies on the backend to handle event-driven logic. It also communicates with the **File** via REST for uploading and retrieving files and images related to listed properties.
 
 ## Environment setup 💻
 
