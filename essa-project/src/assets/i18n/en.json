@@ -4,7 +4,7 @@
       "Home": "Home",
       "Browse": "Browse",
       "Dashboard": "Dashboard",
-      "Properties": "Properties",
+      "Properties": "My properties",
       "Messaging": "Messaging",
       "Tenants": "Tenants",
       "Payments": "Payments",
@@ -85,6 +85,17 @@
     "MoveFileToTrashErrorMessage": "An error occurred when moving file to trash.",
     "RestoreFileSuccessMessage": "File was successfully restored.",
     "RestoreFileErrorMessage": "An error occurred when restoring file."
+  },
+  "Images": {
+    "Tags": {
+      "Kitchen": "Kitchen",
+      "LivingRoom": "Living room",
+      "Bedroom": "Bedroom",
+      "Bathroom": "Bathroom",
+      "DiningRoom": "Dining room",
+      "Office": "Office",
+      "Outdoor": "Outdoor"
+    }
   },
   "Settings": {
     "Tags": {
