@@ -90,7 +90,7 @@ jobs:
 
       - name: Deploy Helm Chart to DEV
         run: |
-          helm upgrade --install ${{ env.DEPLOYMENT_NAME }} ./deploy/k8s/charts/frontend-chart \
+          helm upgrade --install ${{ env.DEPLOYMENT_NAME }} ../../deploy/k8s/charts/frontend-chart \
             --set frontend.deployment.image.repository="${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}" \
             --set frontend.deployment.image.tag="${{ github.sha }}" \
             --namespace essa-project
