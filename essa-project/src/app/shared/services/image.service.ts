@@ -8,7 +8,7 @@ import {
   FileUploadResponse,
   ImagePreviewResponse,
   PropertyThumbnailsResponse
-} from '../models/file.model';
+} from '../../features/admin/files/models/file.model';
 
 @Injectable({
   providedIn: 'root'

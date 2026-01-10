@@ -11,7 +11,7 @@ import {
   TagSelectMultipleComponent
 } from '../../../../../shared/components/tag-select-multiple/tag-select-multiple.component';
 import {FileUploadComponent} from '../../../../../shared/components/file-upload/file-upload.component';
-import {FileUploadChange} from '../../../../../shared/models/file.model';
+import {FileUploadChange} from '../../../files/models/file.model';
 import {ToastService} from '../../../../../shared/services/toast.service';
 
 @Component({

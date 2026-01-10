@@ -1,0 +1,60 @@
+<app-tab-view [tabs]="tabs" [(activeTab)]="activeTab" titleProperty="title">
+  <ng-template #content>
+    <p-table
+      [value]="activeTab() == 0 ? availableActiveFiles() : availableDeletedFiles()"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      [loading]="fileStore.isLoading()"
+      styleClass="h-full flex flex-col"
+      paginatorStyleClass="text-xs!"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th class="font-bold text-sm">{{ "Files.Filename" | translate }}</th>
+          <th class="font-bold text-sm">{{ "Files.ContentType" | translate }}</th>
+          <th class="font-bold text-sm">{{ "Files.FileSize" | translate }}</th>
+          <th class="font-bold text-sm">{{ "Files.DateUploaded" | translate }}</th>
+          <th class="font-bold text-sm">{{ "Files.DateModified" | translate }}</th>
+          <th></th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>
+            {{ item.fileName }}
+          </td>
+          <td>{{ item.contentType }}</td>
+          <td>{{ item.fileSize | bytesToMb }}</td>
+          <td>{{ item.dateUploaded | stringToFormattedDate : 'PP' }}</td>
+          <td>{{ item.dateModified | stringToFormattedDate : 'PP' }}</td>
+
+          <td class="flex flex-row justify-end">
+            <p-menu #menu [model]="gridActions()" [popup]="true" appendTo="body"
+                    styleClass="text-sm mt-2 w-fit! min-w-fit!"
+            >
+              <ng-template #item let-item>
+                <a class="flex items-center p-menu-item-link">
+                  <span class="{{ item.icon }} text-xs!"></span>
+                  <span class="mx-2 text-sm">{{ item.label }}</span>
+                </a>
+              </ng-template>
+            </p-menu>
+            <p-button (click)="menu.toggle($event); selectedFile = item" icon="pi pi-ellipsis-h"
+                      severity="secondary"
+                      size="small"/>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </ng-template>
+</app-tab-view>
+
+<app-delete-dialog
+  [(visible)]="deleteFileDialogVisible"
+  [header]="'Files.MoveToTrash' | translate"
+  [body]="'Files.MoveFileToTrashWarning' | translate: {fileName: selectedFile?.fileName ?? ''}"
+  (onDelete)="deleteSelectedFile()"
+></app-delete-dialog>
+

@@ -1,0 +1,20 @@
+<app-fluid-layout>
+  <app-page-header [title]="'General.Pages.Files' | translate">
+    <ng-template #toolbar>
+      <p-splitbutton
+        styleClass="right-align-dropdown"
+        menuStyleClass="text-sm p-1 mt-2"
+        label="{{ 'General.Buttons.Actions' | translate }}"
+        appendTo="body"
+        [model]="gridActions()"
+        size="small"
+      />
+    </ng-template>
+  </app-page-header>
+
+  <app-file-grid class="flex-grow"></app-file-grid>
+</app-fluid-layout>
+
+<app-file-dialog
+  [(visible)]="addFileDialogVisible"
+></app-file-dialog>

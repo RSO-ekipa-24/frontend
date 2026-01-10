@@ -26,6 +26,7 @@
     "@primeng/themes": "^19.0.10",
     "@tailwindcss/postcss": "^4.0.14",
     "angular-oauth2-oidc": "^19.0.0",
+    "date-fns": "^4.1.0",
     "essa-project": "file:",
     "fast-average-color": "^9.5.0",
     "keycloak-angular": "^19.0.2",

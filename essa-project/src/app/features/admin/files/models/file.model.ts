@@ -12,6 +12,21 @@ export interface FileUploadResponse {
   expiresAt: string;
 }
 
+export interface FileMetadataResponse {
+  id: string;
+  fileName: string;
+  contentType: string;
+  fileSize: number;
+  dateUploaded: string;
+  dateModified: string;
+  status: 'AVAILABLE' | 'DELETED' | 'PENDING';
+  tags: string[];
+}
+
+export interface FileDownloadResponse {
+  downloadUrl: string;
+}
+
 export interface PropertyThumbnailsResponse {
   propertyId: number;
   thumbnailUrl: string | null;

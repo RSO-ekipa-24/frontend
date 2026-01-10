@@ -1,7 +1,9 @@
 <p-tabs
   [value]="activeTab()"
+  (valueChange)="onTabChange($event)"
   class="flex flex-col h-full rounded-t-3xl shadow-sm"
   [class.rounded-3xl]="rounded()">
+
   @if (tabs().length > 1) {
     <p-tablist class="flex">
       @for (tab of tabs(); track $index) {
@@ -9,8 +11,8 @@
           [value]="$index"
           class="p-0! cursor-pointer"
           [class.bg-white]="activeTab() !== $index"
-          [class.bg-gray-50]="activeTab() === $index"
-        >
+          [class.bg-gray-50]="activeTab() === $index">
+
           @if (tabTemplateRef) {
             <ng-container *ngTemplateOutlet="tabTemplateRef; context: { $implicit: tab }"></ng-container>
           } @else {
@@ -30,8 +32,11 @@
               <ng-container *ngTemplateOutlet="toolbarTemplateRef"></ng-container>
             </div>
           }
+
           @if (contentTemplateRef) {
-            <ng-container *ngTemplateOutlet="contentTemplateRef"></ng-container>
+            <ng-container *ngTemplateOutlet="contentTemplateRef; context: { $implicit: tab }"></ng-container>
+          } @else {
+            <div class="text-gray-500">No content provided</div>
           }
         </div>
       </p-tabpanel>
