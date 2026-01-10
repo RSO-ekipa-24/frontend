@@ -15,7 +15,7 @@ env:
   DEV_CLUSTER: 'essa-cluster'
   DEV_ZONE: 'europe-central2'
 
-  DEPLOYMENT_NAME: 'frontend-release'
+  DEPLOYMENT_NAME: 'frontend-app'
   REPOSITORY: 'essa-images'
   IMAGE: 'frontend-app'
   WORKING_DIR: './essa-project'
