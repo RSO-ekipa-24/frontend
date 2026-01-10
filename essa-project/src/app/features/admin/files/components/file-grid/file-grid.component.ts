@@ -40,11 +40,15 @@ export class FileGridComponent {
   activeTab = model<number>(0);
 
   availableActiveFiles = computed(() => {
-    return this.fileStore.activeFiles()?.filter(x => x.status == 'AVAILABLE');
+    return this.fileStore.activeFiles()?.filter(x =>
+      x.status === 'AVAILABLE' && !x.contentType.startsWith('image/')
+    );
   });
 
   availableDeletedFiles = computed(() => {
-    return this.fileStore.deletedFiles();
+    return this.fileStore.deletedFiles()?.filter(x =>
+      !x.contentType.startsWith('image/')
+    );
   });
 
   public selectedFile: FileMetadataResponse | null = null;
