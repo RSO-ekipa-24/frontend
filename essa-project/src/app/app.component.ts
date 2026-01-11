@@ -25,8 +25,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.translate.addLangs(['en', 'sl']);
-    this.translate.setDefaultLang('en');
-    this.translate.use('en');
 
     // Check initial route
     this.checkAdminRoute(this.router.url);

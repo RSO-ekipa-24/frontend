@@ -142,9 +142,24 @@ export const PropertyStore = signalStore(
                 if (files.length === 0) return of({ ...newProp, images: [] });
 
                 const uploads = files.map(file => imageService.uploadImage(file, newProp.id));
+
                 return forkJoin(uploads).pipe(
                   switchMap(() => imageService.getImagesForProperty(Number(newProp.id))),
-                  map(images => ({ ...newProp, images }))
+                  map(images => {
+                    if (images.length === 0 && files.length > 0) {
+                      const localImages: ImagePreviewResponse[] = files.map((file, index) => ({
+                        id: `temp-${Date.now()}-${index}`,
+                        imageUrl: URL.createObjectURL(file),
+                        name: file.name,
+                        tags: [],
+                        status: 'ACTIVE',
+                        contentType: file.type,
+                        size: file.size
+                      }));
+                      return { ...newProp, images: localImages };
+                    }
+                    return { ...newProp, images };
+                  })
                 );
               }),
               tapResponse({

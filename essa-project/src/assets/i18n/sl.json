@@ -4,14 +4,15 @@
       "Home": "Domov",
       "Browse": "Brskaj",
       "Dashboard": "Nadzorna plošča",
-      "Properties": "Nepremičnine",
+      "Properties": "Moje nepremičnine",
       "Messaging": "Sporočila",
       "Tenants": "Najemniki",
       "Payments": "Plačila",
-      "Documents": "Dokumenti",
+      "Files": "Datoteke",
       "Organization": "Organizacija",
       "Settings": "Nastavitve",
-      "Tags": "Oznake"
+      "Tags": "Oznake",
+      "Profile": "Profil"
     },
     "Buttons": {
       "Login": "Prijava",
@@ -26,12 +27,23 @@
       "Delete": "Izbriši",
       "Search": "Išči",
       "ManageProperties": "Upravljaj",
-      "Inbox": "Prejeto"
+      "Inbox": "Prejeto",
+      "Choose": "Izberi",
+      "DragAndDrop": "Povleci in spusti ali",
+      "ClickHere": "Klikni tukaj",
+      "Success": "Uspeh",
+      "Error": "Napaka",
+      "FullScreen": "Celozaslonski način",
+      "Upload": "Naloži",
+      "Download": "Prenesi",
+      "Restore": "Obnovi"
     },
     "Fields": {
       "Color": "Barva",
       "Description": "Opis",
-      "Name": "Ime"
+      "Name": "Ime",
+      "FileName": "Ime datoteke",
+      "SelectFile": "Izberi datoteko"
     }
   },
   "Properties": {
@@ -39,7 +51,50 @@
     "PropertyGroup": "Skupina nepremičnin",
     "AddProperty": "Dodaj nepremičnino",
     "AddPropertyGroup": "Dodaj skupino nepremičnin",
-    "EditProperty": "Uredi nepremičnino"
+    "EditProperty": "Uredi nepremičnino",
+    "DeleteProperty": "Izbriši nepremičnino",
+    "DeletePropertyWarning": "Ali ste prepričani, da želite izbrisati nepremičnino {{propertyName}}?",
+    "CreatePropertySuccessMessage": "Nepremičnina je bila uspešno ustvarjena.",
+    "CreatePropertyErrorMessage": "Pri ustvarjanju nepremičnine je prišlo do napake.",
+    "UpdatePropertySuccessMessage": "Nepremičnina je bila uspešno posodobljena.",
+    "UpdatePropertyErrorMessage": "Pri posodabljanju nepremičnine je prišlo do napake.",
+    "DeletePropertySuccessMessage": "Nepremičnina je bila uspešno izbrisana.",
+    "DeletePropertyErrorMessage": "Pri brisanju nepremičnine je prišlo do napake.",
+    "Images": "Slike",
+    "SelectProperty": "Izberi nepremičnino"
+  },
+  "Files": {
+    "File": "Datoteka",
+    "Active": "Aktivno",
+    "Trash": "Smetnjak",
+    "Filename": "Ime",
+    "ContentType": "Vrsta",
+    "FileSize": "Velikost",
+    "DateUploaded": "Naloženo",
+    "DateModified": "Spremenjeno",
+    "Status": "Status",
+    "Tags": "Oznake",
+    "AddFile": "Dodaj datoteko",
+    "MoveToTrash": "Premakni v smetnjak",
+    "CreateFileSuccessMessage": "Datoteka je bila uspešno ustvarjena.",
+    "CreateFileErrorMessage": "Pri ustvarjanju datoteke je prišlo do napake.",
+    "DownloadFileErrorMessage": "Pri prenosu datoteke je prišlo do napake.",
+    "MoveFileToTrashWarning": "Ali ste prepričani, da želite premakniti {{fileName}} v smetnjak?",
+    "MoveFileToTrashSuccessMessage": "Datoteka je bila uspešno premaknjena v smetnjak.",
+    "MoveFileToTrashErrorMessage": "Pri premikanju datoteke v smetnjak je prišlo do napake.",
+    "RestoreFileSuccessMessage": "Datoteka je bila uspešno obnovljena.",
+    "RestoreFileErrorMessage": "Pri obnavljanju datoteke je prišlo do napake."
+  },
+  "Images": {
+    "Tags": {
+      "Kitchen": "Kuhinja",
+      "LivingRoom": "Dnevna soba",
+      "Bedroom": "Spalnica",
+      "Bathroom": "Kopalnica",
+      "DiningRoom": "Jedilnica",
+      "Office": "Pisarna",
+      "Outdoor": "Zunanjost"
+    }
   },
   "Settings": {
     "Tags": {
@@ -55,24 +110,24 @@
   },
   "Footer": {
     "appName": "MyProperty",
-    "byEssa": "©2025 MyProperty by ESSA",
+    "byEssa": "©2025 MyProperty s strani ESSA",
     "termsOfService": "Pogoji uporabe",
-    "privacyPolicy": "Pravilnik o zasebnosti",
+    "privacyPolicy": "Politika zasebnosti",
     "products": {
-      "title": "Produkti",
-      "product": "Produkt",
+      "title": "Izdelki",
+      "product": "Izdelek",
       "pricing": "Cenik",
       "login": "Prijava"
     },
     "about": {
       "title": "O nas",
-      "aboutApp": "O MyProperty",
+      "aboutApp": "O aplikaciji MyProperty",
       "contactUs": "Kontaktirajte nas",
       "features": "Funkcionalnosti"
     },
     "resources": {
       "title": "Viri",
-      "helpCenter": "Pomoč uporabnikom",
+      "helpCenter": "Center za pomoč",
       "frequentQA": "Pogosta vprašanja",
       "support": "Podpora"
     },
