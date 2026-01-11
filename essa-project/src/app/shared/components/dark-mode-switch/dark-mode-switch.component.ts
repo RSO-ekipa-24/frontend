@@ -31,5 +31,4 @@ export class DarkModeSwitchComponent {
       html.classList.remove('dark');
     }
   }
-
 }

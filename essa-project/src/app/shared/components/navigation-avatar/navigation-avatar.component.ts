@@ -10,6 +10,7 @@ import {map} from 'rxjs';
 import {RouterLink} from '@angular/router';
 import {Divider} from 'primeng/divider';
 import {DarkModeSwitchComponent} from '../dark-mode-switch/dark-mode-switch.component';
+import {LanguageSwitchComponent} from '../language-switch/language-switch.component';
 
 @Component({
   selector: 'app-navigation-avatar',
@@ -20,7 +21,8 @@ import {DarkModeSwitchComponent} from '../dark-mode-switch/dark-mode-switch.comp
     TranslatePipe,
     RouterLink,
     Divider,
-    DarkModeSwitchComponent
+    DarkModeSwitchComponent,
+    LanguageSwitchComponent
   ],
   templateUrl: './navigation-avatar.component.html',
   styleUrl: './navigation-avatar.component.scss'
